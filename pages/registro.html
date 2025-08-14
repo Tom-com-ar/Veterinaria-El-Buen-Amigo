@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrate – El Buen Amigo</title>
+  <link href="../dist/output.css" rel="stylesheet" />
+  <link rel="icon" href="../assets/Logo.png" />
+</head>
+<body class="antialiased text-slate-800 h-screen overflow-hidden">
+  <main class="grid grid-cols-1 md:grid-cols-2 h-full">
+    <!-- IZQUIERDA: teal + logo reducido -->
+    <section class="h-full flex items-center justify-center" style="background-color:#126b73">
+      <img src="../assets/Logo.png" alt="El Buen Amigo" class="h-40 w-auto object-contain drop-shadow" />
+    </section>
+
+    <!-- DERECHA: perrigato arriba, tarjeta sólida debajo con el form -->
+    <section class="h-full flex items-center justify-center bg-white px-6">
+      <div class="w-full max-w-[520px]">
+        <div class="relative flex flex-col items-center">
+          <!-- Perrigato arriba y centrado -->
+          <img src="../assets/perrigato.png" alt="perro y gato"
+               class="absolute -top-12 left-1/2 -translate-x-1/2 h-20 w-auto z-10 pointer-events-none select-none drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)]" />
+
+          <!-- Tarjeta BEIGE sólida debajo -->
+          <div class="w-full rounded-[24px] bg-[#b9a698] border border-black/5 shadow-[0_18px_30px_rgba(0,0,0,0.)] p-8 pt-10">
+            <form class="space-y-6">
+              <input type="text" placeholder="Nombre"
+                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
+              <input type="email" placeholder="Email"
+                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
+              <input type="password" placeholder="Contraseña"
+                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
+              <div class="pt-2 text-center">
+                <button type="submit"
+                  class="inline-flex items-center justify-center rounded-full px-8 py-3 font-semibold text-white
+                         shadow-[0_8px_0_#b45309] hover:translate-y-[1px] hover:shadow-[0_7px_0_#b45309]
+                         active:translate-y-[2px] active:shadow-[0_6px_0_#b45309]"
+                  style="background-color:#f59e0b">
+                  Enviar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Enlace debajo y centrado -->
+        <p class="mt-6 text-center">
+          Si tienes cuenta
+          <a href="./login.html" class="font-semibold" style="color:#f59e0b">Inicia Sesión</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

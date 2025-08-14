@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicia Sesión – El Buen Amigo</title>
+  <link href="../dist/output.css" rel="stylesheet" />
+  <link rel="icon" href="../assets/Logo.png" />
+</head>
+<body class="antialiased text-slate-800">
+  <main class="grid md:grid-cols-2 min-h-screen">
+    <!-- Lado izquierdo: formulario en tarjeta -->
+    <section class="relative bg-white flex items-start md:items-center justify-center md:justify-end order-2 md:order-1">
+      <div class="relative w-full max-w-lg md:mr-10 lg:mr-16 mt-10 md:mt-0">
+        <div class="relative rounded-3xl px-6 sm:px-8 py-8 pt-14 shadow-xl" style="background-color:#b9a698">
+          <img src="../assets/perrigato.png" alt="perro y gato"
+               class="absolute -top-12 left-1/2 -translate-x-1/2 h-16 w-auto select-none pointer-events-none drop-shadow-lg" />
+
+          <form action="#" method="post" class="grid gap-6">
+            <div>
+              <label for="lemail" class="block text-slate-900 font-semibold">Email</label>
+              <input id="lemail" name="email" type="email" required
+                     class="mt-2 w-full rounded-2xl px-4 py-3 shadow-md outline-none focus:ring-2 focus:ring-amber-400"
+                     style="background-color:#e9e2dd" />
+            </div>
+            <div>
+              <label for="lpass" class="block text-slate-900 font-semibold">Contraseña</label>
+              <input id="lpass" name="password" type="password" required
+                     class="mt-2 w-full rounded-2xl px-4 py-3 shadow-md outline-none focus:ring-2 focus:ring-amber-400"
+                     style="background-color:#e9e2dd" />
+            </div>
+            <div class="pt-1">
+              <button type="submit"
+                class="inline-flex items-center justify-center rounded-full bg-amber-500 px-7 py-3 font-semibold text-white shadow-[0_6px_0_#b45309] hover:translate-y-[1px] hover:shadow-[0_5px_0_#b45309] active:translate-y-[2px] active:shadow-[0_4px_0_#b45309] transition">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <p class="mt-10 text-left text-sm md:text-base">Si no tienes cuenta
+          <a href="./registro.html" class="font-semibold text-amber-500 hover:underline">Regístrate</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Lado derecho: fondo teal con logo grande -->
+    <section class="flex items-center justify-center p-8 order-1 md:order-2" style="background-color:#126b73">
+      <div class="max-w-md text-center text-white">
+        <img src="../assets/Logo.png" alt="Logo El Buen Amigo" class="mx-auto h-48 w-auto object-contain drop-shadow-md" />
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight">El Buen Amigo</h1>
+        <p class="mt-1 text-lg tracking-[0.35em] font-semibold text-white/90">VETERINARIA</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
