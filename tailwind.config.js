@@ -7,7 +7,11 @@ module.exports = {
     "./**/*.php"       // si usas PHP
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: '320px', // breakpoint nuevo para 320px
+      },
+    },
   },
   plugins: [],
 }

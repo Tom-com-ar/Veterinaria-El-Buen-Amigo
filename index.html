@@ -11,26 +11,25 @@
     .text-stroke { text-shadow: 0 0 0 #0e7490, 0 0 0 #0e7490; }
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
+<body class="bg-white text-slate-800 antialiased scroll-smooth">
   <!-- ===== NAVBAR ===== -->
-  <header class="w-full sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+  <header class="w-full sticky top-0 z-50 bg-[#82C0CC]/80 backdrop-blur ">
+    <div class="max-w-7xl mx-auto px-4 h-18 flex items-center justify-between gap-4">
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 shrink-0">
-        <img src="./assets/Logo.png" alt="El Buen Amigo" class="h-10 w-10 rounded-full object-contain" />
-        <span class="hidden sm:inline text-lg font-semibold">El Buen Amigo</span>
+      <a href="#" class="flex items-center shrink-0 2xl:-ml-[150px] mt-4  lg:ml-[-20px] md:ml-[-25px]">
+        <img src="./assets/Logo 4.png" alt="El Buen Amigo" class="h-[125px] w-[125px] object-contain" />
       </a>
 
       <!-- Pills de navegación (estilo Figma) -->
-      <nav class="hidden md:flex items-center gap-1 bg-amber-500 text-white rounded-full px-2 py-1 shadow-[0_4px_0_#b45309]">
-        <a href="#inicio" class="px-4 py-2 rounded-full hover:bg-white/15">Inicio</a>
-        <a href="#servicios" class="px-4 py-2 rounded-full hover:bg-white/15">Servicios</a>
-        <a href="#productos" class="px-4 py-2 rounded-full hover:bg-white/15">Productos</a>
-        <a href="#contacto" class="px-4 py-2 rounded-full hover:bg-white/15">Contacto</a>
+      <nav class="hidden md:flex items-center gap-1 bg-amber-500 text-black font-bold rounded-full px-4 py-0.5 shadow-[0_4px_0_#b45309] 2xl:ml-[70px] md:ml-[75px] lg:ml-[80px] ">
+        <a href="#inicio" class="px-2 py-1 rounded-full hover:bg-white/15">Inicio</a>
+        <a href="#servicios" class="px-2 py-1 rounded-full hover:bg-white/15">Servicios</a>
+        <a href="#productos" class="px-2 py-1 rounded-full hover:bg-white/15">Productos</a>
+        <a href="#contacto" class="px-2 py-1 rounded-full hover:bg-white/15">Contacto</a>
       </nav>
 
       <!-- Acciones derecha -->
-      <div class="hidden sm:flex items-center gap-4 text-sm">
+      <div class="hidden sm:flex items-center gap-4 text-sm 2xl:-mr-[150px] md:mr-[10px]">
         <a href="./pages/login.html" class="inline-flex items-center gap-2 hover:text-sky-800">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M4 20a8 8 0 0116 0"/></svg>
           Login
@@ -61,47 +60,57 @@
   <!-- ===== HERO ===== -->
   <section id="inicio" class="relative">
     <div class="relative h-[380px] md:h-[460px] bg-gradient-to-b from-sky-200 to-sky-100">
-      <img src="./assets/Landing%20Page.png" alt="Fondo mascotas" class="absolute inset-0 h-full w-full object-cover" />
-      <div class="absolute left-4 sm:left-10 top-8 sm:top-16 bg-white/70 backdrop-blur px-6 py-5 max-w-md rounded-2xl border-4 border-sky-200 shadow-md">
-        <p class="text-sky-900 text-lg md:text-xl font-semibold leading-snug">Sabemos lo importante que es para el bienestar de tu mascota</p>
+      <img src="./assets/Landing%20Page.png" alt="Fondo mascotas" class="absolute inset-0 h-[800px] w-full object-cover" />
+      <div class="2xl:w-[1100px] h-[380px] md:w-[600px] md:h-[250px] mt-10 absolute left-0 sm:left-0 top-8 sm:top-16 bg-[#EDE7E3]/60 backdrop-blur px-6 py-5 rounded-r-2xl border-4 border-sky-200 shadow-md flex items-center justify-center max-md:w-[500px] max-md:text-xl max-sm:w-[300px] max-sm:h-[200px] ">
+        <p class="text-[#FFA62B] text-[36px] font-extrabold leading-snug text-left w-[800px] max-sm:text-[20px]">
+          Sabemos lo importante que es para el bienestar de tu mascota
+        </p>
       </div>
     </div>
 
     <!-- Tarjeta de Servicios -->
-    <div class="relative -mt-10 sm:-mt-14">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="bg-stone-100 rounded-xl sm:rounded-2xl shadow-lg border border-slate-200 px-4 sm:px-6 py-6 sm:py-8">
+    <div id="Servicios" class="relative -mt-12 sm:-mt-14">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="mt-[300px] w-[1500px] bg-stone-100 rounded-xl sm:rounded-2xl shadow-lg border border-slate-200 px-4 sm:px-6 py-6 sm:py-8 max-md:w-[600px] max-sm:w-[350px]"> 
           <div class="flex items-center gap-3 mb-6">
-            <h2 class="text-lg sm:text-xl font-semibold">Servicios</h2>
+            <h2 class=" text-[#FFA62B] text-lg sm:text-xl font-bold">Servicios</h2>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div class="grid md:grid-cols-4 gap-6 md:gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
             <!-- Cirugía -->
             <div class="text-center">
-              <div class="mx-auto w-28 h-28 rounded-full bg-[#3D98A4] shadow-[0_6px_0_rgba(0,0,0,0.15)] flex items-center justify-center">
-                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8l8 8"/><path d="M7 8l9-5 1 2-8 8-2-5z"/><path d="M14 14l7 7"/></svg>
+              <div class="boton-servicios ">
+                <svg class="w-20 h-20 text-white">
+                  <use href="./assets/svg/Nurse.svg"></use>
+                </svg>
               </div>
-              <p class="mt-3 font-semibold">Cirugías</p>
+              <p class="mt-4 font-bold text-xl">Cirugías</p>
             </div>
             <!-- Internación -->
             <div class="text-center">
-              <div class="mx-auto w-28 h-28 rounded-full bg-[#3D98A4] shadow-[0_6px_0_rgba(0,0,0,0.15)] flex items-center justify-center">
-                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V8a2 2 0 012-2h14a2 2 0 012 2v13"/><path d="M3 14h18"/><path d="M10 10h4"/></svg>
+              <div class="boton-servicios">
+                <svg class="w-20 h-20 text-white">
+                  <use href="./assets/svg/Eye.svg"></use>
+                </svg>
               </div>
-              <p class="mt-3 font-semibold">Internación</p>
+              <p class="mt-4 font-bold text-xl">Internación</p>
             </div>
             <!-- Vacunación -->
             <div class="text-center">
-              <div class="mx-auto w-28 h-28 rounded-full bg-[#3D98A4] shadow-[0_6px_0_rgba(0,0,0,0.15)] flex items-center justify-center">
-                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 3l3 3-3 3-3-3 3-3z"/><path d="M2 22l7-7"/><path d="M5 19l3 3"/></svg>
+              <div class="boton-servicios">
+                <svg class="w-20 h-20 text-white">
+                  <use href="./assets/svg/Syringe.svg"></use>
+                </svg>
               </div>
-              <p class="mt-3 font-semibold">Vacunación</p>
+              <p class="mt-4 font-bold text-xl">Vacunación</p>
             </div>
             <!-- Consultas -->
             <div class="text-center">
-              <div class="mx-auto w-28 h-28 rounded-full bg-[#3D98A4] shadow-[0_6px_0_rgba(0,0,0,0.15)] flex items-center justify-center">
-                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 10-9.33 5"/><path d="M12 16v2"/><path d="M12 22h0"/></svg>
+              <div class="boton-servicios">
+                <svg class="w-20 h-20 text-white">
+                  <use href="./assets/svg/Stetoscope.svg"></use>
+                </svg>
               </div>
-              <p class="mt-3 font-semibold">Consultas</p>
+              <p class="mt-4 font-bold text-xl">Consultas</p>
             </div>
           </div>
         </div>
@@ -202,9 +211,9 @@
 
   <!-- ===== FORM + DOG ===== -->
   <section id="contacto" class="relative py-12 bg-gradient-to-r from-cyan-700 to-teal-500">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6 items-end">
-      <div class="bg-white/95 rounded-xl p-5 sm:p-6 shadow-lg border border-slate-200 max-w-md">
-        <h3 class="text-2xl font-extrabold text-slate-800 mb-4">¡Escuchamos tu opinión!!</h3>
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6 items-end justify-center md:justify-start">
+      <div class="bg-white/95 rounded-xl p-5 sm:p-6 shadow-lg border border-slate-200 max-w-md mx-auto">
+        <h3 class="text-2xl font-extrabold text-slate-800 mb-4 items-center">¡Escuchamos tu opinión!!</h3>
         <form class="grid gap-3">
           <input class="rounded-lg border border-slate-300 px-3 py-2" placeholder="Nombre"/>
           <input type="email" class="rounded-lg border border-slate-300 px-3 py-2" placeholder="Email"/>
@@ -215,18 +224,18 @@
           <div class="flex justify-end"><button class="px-5 py-2 rounded-full bg-amber-500 text-white shadow-[0_4px_0_#b45309]">Enviar</button></div>
         </form>
       </div>
-      <div class="relative h-[260px] md:h-[360px]">
-        <img src="./assets/jpg-removebg-preview%202.png" alt="Perro" class="absolute bottom-0 right-0 h-full object-contain" />
+      <div class="relative h-[260px] md:h-[360px] max-md:hidden">
+        <img src="./assets/jpg-removebg-preview%202.png" alt="Perro" class="absolute 2xl:-mt-14  2xl:-right-20  2xl:w-[800px] 2xl:h-[500px] object-contain md:[600px] md:h-[400px] md:-right-1 md:mt-11 lg:mt-4"  />
       </div>
     </div>
   </section>
 
   <!-- ===== CTA App (cinta) ===== -->
-  <section class="relative py-8">
+  <section class="relative py-8 mt-30">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="relative">
-        <a href="#" class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-amber-500 text-white shadow-[0_6px_0_#b45309]">Conocé nuestra nueva app</a>
-        <img src="./assets/image%205.png" alt="Cachorros" class="hidden sm:block absolute right-0 -top-6 h-24 object-contain" />
+      <div class="relative -ml-52">
+        <a href="#" class="h-[100px] w-[450px] inline-flex items-center gap-3 px-6 py-3 rounded-r-2xl bg-amber-500 text-2xl font-sembold shadblackow-[0_6px_0_#b45309] -md:ml-[230px] max-md:w-[300px] max-md:ml-[240px] max-md:text-[20px]">Conocé nuestra nueva app</a>
+        <img src="./assets/image%205.png" alt="Cachorros" class="hidden sm:block absolute -right-[20px] -top-4 h-36 object-contain " />
       </div>
     </div>
   </section>
@@ -240,7 +249,10 @@
         <p class="text-sm text-slate-700">Lorem ipsum dolor sit amet consectetur. Tellus nec nulla libero egestas placerat. Hendrerit tellus id sed nullam augue dui.</p>
       </div>
       <div class="flex justify-center md:justify-end">
-        <img src="./assets/image%203.png" alt="App mockup" class="h-72 object-contain drop-shadow-xl" />
+        <div class="relative h-96 w-56 flex-shrink-0 md:mr-12 max-md:mt-4">
+          <img src="./assets/Celular.png" alt="App mockup" class="-mt-12 h-[600px] w-64 object-cover drop-shadow-xl" />
+          <img src="./assets/Logo 3.png" alt="Logo en celular" class="absolute top-46 left-28 w-58 h-58 -translate-x-1/2 -translate-y-1/2 object-contain" />
+        </div>
       </div>
     </div>
   </section>
