@@ -1,0 +1,6 @@
+En 768px los servicios de ven de 1 columna y se tiene que ver de 2
+
+en 320px el texto de sebamos el bienestar para ut mascota se sale de la pantalla
+
+y despues el tamaño del logo en las distintas pantallas
+
