@@ -1,18 +1,73 @@
 @import "tailwindcss";
 
-*{
-    scroll-behavior: smooth;
+@font-face {
+    font-family: 'Poppins';
+    src: url('https://fonts.gstatic.com/s/poppins/v15/pxiYyp8kv8JHgFVrJJLucXc.woff2') format('woff2'),
+         url('https://fonts.gstatic.com/s/poppins/v15/pxiYyp8kv8JHgFVrJJLucXc.woff') format('woff');
 }
 
-.boton-servicios {
-    margin-left: auto;
-    margin-right: auto;
-    width: 10rem;   /* 40 x 0.25rem = 10rem */
-    height: 10rem;
-    border-radius: 9999px;
-    background-color: #3D98A4;
-    box-shadow: 0 6px 0 rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@theme {
+
+    /* Colores */
+
+    --color-vet-dark: #16697A;
+    --color-vet-blue: #489FB5;
+    --color-vet-light: #82C0CC;
+    --color-vet-cream: #EDE7E3;
+    --color-vet-orange: #FFA62B;
+    --color-vet-taupe: #B6A396;
+    --color-vet-green: #ADD37C;
+
+    /* Responsive */
+
+    --breakpoint-xs: 320px;
+}
+
+* {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', system-ui, sans-serif;
+}
+
+.nav-light {
+    color: blackA !important;
+}
+
+.nav-light .text-white {
+    color: black !important;
+}
+
+.nav-light .bg-white {
+    background-color: #ffa62b !important;
+}
+
+.nav-light .text-vet-blue {
+    color: black !important;
+}
+
+.nav-light .bg-vet-orange {
+    background-color: #ffa62b !important;
+}
+
+.nav-light .text-vet-orange {
+    color: #16697A !important;
+}
+
+.nav-light .border-white\/20 {
+    border-color: rgba(22, 105, 122, 0.2) !important;
+}
+
+.nav-light .bg-vet-dark\/90 {
+    background-color: #add37c !important;
+}
+
+.nav-light .hover\:text-vet-light:hover {
+    color: #ffa62b !important;
+}
+
+.nav-light .hover\:bg-vet-orange\/90:hover {
+    background-color: rgba(22, 105, 122, 0.9) !important;
+}
+
+button{
+    cursor: pointer;
 }
