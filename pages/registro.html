@@ -1,53 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Registrate – El Buen Amigo</title>
-  <link href="../dist/output.css" rel="stylesheet" />
-  <link rel="icon" href="../assets/Logo.png" />
+  <title>Registro - El Buen Amigo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="antialiased text-slate-800 h-screen overflow-hidden">
-  <main class="grid grid-cols-1 md:grid-cols-2 h-full">
-    <!-- IZQUIERDA: teal + logo reducido -->
-    <section class="h-full flex items-center justify-center" style="background-color:#126b73">
-      <img src="../assets/Logo.png" alt="El Buen Amigo" class="h-40 w-auto object-contain drop-shadow" />
+
+<body class="min-h-screen bg-white">
+  <main class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- IZQUIERDA: logo -->
+    <section class="flex-1 flex items-center justify-center bg-[#1A6D77]">
+      <img src="../assets/Logo.png" alt="Logo El Buen Amigo" class="w-[68%] max-w-[520px] md:max-w-[640px] lg:max-w-[720px] h-auto" />
     </section>
 
-    <!-- DERECHA: perrigato arriba, tarjeta sólida debajo con el form -->
-    <section class="h-full flex items-center justify-center bg-white px-6">
-      <div class="w-full max-w-[520px]">
-        <div class="relative flex flex-col items-center">
-          <!-- Perrigato arriba y centrado -->
-          <img src="../assets/perrigato.png" alt="perro y gato"
-               class="absolute -top-12 left-1/2 -translate-x-1/2 h-20 w-auto z-10 pointer-events-none select-none drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)]" />
-
-          <!-- Tarjeta BEIGE sólida debajo -->
-          <div class="w-full rounded-[24px] bg-[#b9a698] border border-black/5 shadow-[0_18px_30px_rgba(0,0,0,0.)] p-8 pt-10">
-            <form class="space-y-6">
-              <input type="text" placeholder="Nombre"
-                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
-              <input type="email" placeholder="Email"
-                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
-              <input type="password" placeholder="Contraseña"
-                     class="w-full rounded-[18px] px-5 py-3 bg-[#eee6e1] shadow-md outline-none focus:ring-2 focus:ring-amber-400" />
-              <div class="pt-2 text-center">
-                <button type="submit"
-                  class="inline-flex items-center justify-center rounded-full px-8 py-3 font-semibold text-white
-                         shadow-[0_8px_0_#b45309] hover:translate-y-[1px] hover:shadow-[0_7px_0_#b45309]
-                         active:translate-y-[2px] active:shadow-[0_6px_0_#b45309]"
-                  style="background-color:#f59e0b">
-                  Enviar
-                </button>
-              </div>
-            </form>
-          </div>
+    <!-- DERECHA: formulario -->
+    <section class="flex-1 flex flex-col items-center justify-start md:justify-center bg-white">
+      <div class="w-full max-w-[720px] px-5 sm:px-8 pt-10 md:pt-0">
+        
+        <!-- perro+gato arriba de la tarjeta -->
+        <div class="w-full flex justify-center">
+          <img src="../assets/perrigato.png" alt="Perro y gato" class="w-16 sm:w-20 -mb-2 select-none" />
         </div>
 
-        <!-- Enlace debajo y centrado -->
-        <p class="mt-6 text-center">
+        <!-- Tarjeta -->
+        <div class="bg-[#BFA58D]/95 rounded-2xl shadow-[0_12px_24px_rgba(0,0,0,0.18)] px-5 py-6 sm:px-8 sm:py-8">
+          <form action="#" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            <!-- Fila 1 -->
+            <input type="text" placeholder="Nombre" autocomplete="given-name"
+                   class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <input type="text" placeholder="Apellido" autocomplete="family-name"
+                   class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <!-- Fila 2 -->
+            <input type="tel" placeholder="Teléfono" autocomplete="tel"
+                   class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <input type="text" placeholder="Dirección" autocomplete="street-address"
+                   class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <!-- Email (ocupa 2) -->
+            <input type="email" placeholder="Email" autocomplete="email"
+                   class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <!-- Password (ocupa 2) -->
+            <input type="password" placeholder="Contraseña" autocomplete="new-password"
+                   class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+            <!-- Confirm (ocupa 2) -->
+            <input type="password" placeholder="Confirmar Contraseña" autocomplete="new-password"
+                   class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
+
+            <!-- Botón (alineado a la derecha en md) -->
+            <!-- Botón (centrado) -->
+            <div class="md:col-span-2 flex justify-center">
+             <button type="submit"
+               class="px-6 sm:px-8 h-11 sm:h-12 rounded-full font-semibold bg-[#FFB300] hover:bg-[#ffc233] active:scale-[.99] transition shadow">
+              Enviar
+            </button>
+          </div>
+          </form>
+        </div>
+
+        <!-- Enlace a login (FUERA de la tarjeta) -->
+        <p class="text-center text-sm sm:text-base mt-5">
           Si tienes cuenta
-          <a href="./login.html" class="font-semibold" style="color:#f59e0b">Inicia Sesión</a>
+          <a href="login.html" class="text-[#FFB300] font-semibold hover:underline">Inicia Sesión</a>
         </p>
       </div>
     </section>
