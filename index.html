@@ -55,14 +55,14 @@
 
       <!-- Botones -->
       <div class="flex items-center space-x-4">
-        <button
+        <a href="./pages/login.html"
           class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
           Login
-        </button>
-        <button
+        </a>
+        <a href="./pages/registro.html"
           class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
           Registro
-        </button>
+        </a>
       </div>
     </div>
   </nav>
@@ -292,9 +292,162 @@
             </div>
           </div>
         </div>
-
+        <div class="text-center">
+          <div
+            class="inline-flex items-center space-x-6 bg-gradient-to-r from-vet-blue/10 to-vet-blue/5 px-10 py-6 rounded-3xl border border-vet-blue/20">
+            <div class="text-left">
+              <div class="text-vet-blue font-bold text-lg mb-1">Reservar nuestro servicio</div>
+            </div>
+            <div class="flex space-x-3">
+              <a href="./pages/servicios.html"
+                class="bg-vet-blue text-white px-8 py-3 rounded-2xl font-semibold hover:bg-vet-blue/90 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                Ver Servicios
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+
+  <section class="py-32 bg-gradient-to-br from-white via-[#ede7e3]/30 to-white w-full relative overflow-hidden">
+    <!-- Elementos decorativos de fondo como en otras secciones -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-10 w-32 h-32 bg-vet-blue rounded-full animate-pulse"></div>
+      <div class="absolute bottom-20 right-10 w-24 h-24 bg-vet-orange rounded-full animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-vet-green rounded-full animate-pulse delay-500"></div>
+      <div class="absolute top-1/3 right-1/3 w-20 h-20 bg-vet-light rounded-full animate-pulse delay-1500"></div>
+    </div>
+
+    <div class="w-full px-6 relative z-10">
+      <div class="max-w-7xl mx-auto">
+        <!-- Encabezado con el mismo estilo que otras secciones -->
+        <div class="text-center mb-20">
+          <div class="inline-block bg-vet-orange/10 px-6 py-2 rounded-full mb-6">
+            <span class="text-vet-orange font-semibold text-sm uppercase tracking-wider">Nuestros Planes</span>
+          </div>
+          <h2 class="text-5xl font-bold text-vet-dark mb-6">Elige el plan ideal para tu mascota</h2>
+          <p class="text-xl text-vet-dark/80 max-w-3xl mx-auto leading-relaxed">
+            "Elige el plan que se adapta a tus necesidades y dale a tu compañero la atención que se merece."
+          </p>
+        </div>
+
+        <!-- Grid con el mismo espaciado que otras secciones -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <!-- Plan Básico -->
+          <div
+            class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 border border-gray-100">
+            <h3 class="text-2xl font-bold text-vet-dark mb-2">Básico</h3>
+            <p class="text-sm text-vet-dark/60 mb-6">Ideal para quienes quieren empezar con un plan económico</p>
+            <div class="mb-8">
+              <span class="text-4xl font-bold text-vet-green">$25000</span>
+              <span class="text-vet-dark/60">/mes</span>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                10% de descuento en vacunación
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                5% de descuento en productos básicos
+              </li>
+            </ul>
+            <button
+              class="w-full bg-vet-green text-white py-3 rounded-xl hover:bg-vet-green/90 transition-all duration-300">
+              Elegir Plan
+            </button>
+          </div>
+
+          <!-- Plan Medio -->
+          <div
+            class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 border border-gray-100 transform scale-105">
+            <div class="bg-vet-orange text-white text-sm font-medium px-3 py-1 rounded-full inline-block mb-4">Más
+              Popular</div>
+            <h3 class="text-2xl font-bold text-vet-dark mb-2">Medio</h3>
+            <p class="text-sm text-vet-dark/60 mb-6">Para quienes buscan más tranquilidad y prevención</p>
+            <div class="mb-8">
+              <span class="text-4xl font-bold text-vet-orange">$40000</span>
+              <span class="text-vet-dark/60">/mes</span>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                15% de descuento en vacunación
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                10% de descuento en cirugías e internación
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                10% de descuento en productos básicos
+              </li>
+            </ul>
+            <button
+              class="w-full bg-vet-orange text-white py-3 rounded-xl hover:bg-vet-orange/90 transition-all duration-300">
+              Elegir Plan
+            </button>
+          </div>
+
+          <!-- Plan Premium -->
+          <div
+            class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 border border-gray-100">
+            <h3 class="text-2xl font-bold text-vet-dark mb-2">Premium</h3>
+            <p class="text-sm text-vet-dark/60 mb-6">La cobertura completa para dueños exigentes</p>
+            <div class="mb-8">
+              <span class="text-4xl font-bold text-vet-blue">$65000</span>
+              <span class="text-vet-dark/60">/mes</span>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                50% de descuento en vacunación
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Desparasitación incluida
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                1 chequeo con análisis básicos al año
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                20% en cirugías e internación
+              </li>
+              <li class="flex items-center text-vet-dark">
+                <svg class="w-5 h-5 text-vet-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                15% en productos básicos
+              </li>
+            </ul>
+            <button
+              class="w-full bg-vet-blue text-white py-3 rounded-xl hover:bg-vet-blue/90 transition-all duration-300">
+              Elegir Plan
+            </button>
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- Sección de Productos - ancho completo -->
@@ -497,23 +650,6 @@
             </div>
             <p class="text-base text-vet-dark mb-4 leading-relaxed">
               "Atención 24/7 que me salvó en una emergencia. Son verdaderos héroes para las mascotas."
-            </p>
-            <div class="flex text-vet-orange mb-4">
-              <span class="text-xl">★★★★★</span>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-3xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-500 transform hover:scale-105">
-            <div class="flex items-center mb-6">
-              <div class="w-14 h-14 bg-vet-light/30 rounded-full mr-4"></div>
-              <div>
-                <h4 class="text-base font-bold text-vet-dark">Carlos Ruiz</h4>
-                <p class="text-sm text-vet-dark">Cliente desde 2019</p>
-              </div>
-            </div>
-            <p class="text-base text-vet-dark mb-4 leading-relaxed">
-              "El equipo es muy dedicado y la clínica está súper equipada. Siempre confío en ellos."
             </p>
             <div class="flex text-vet-orange mb-4">
               <span class="text-xl">★★★★★</span>
