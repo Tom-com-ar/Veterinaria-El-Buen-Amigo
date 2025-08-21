@@ -6,55 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Buen Amigo - Veterinaria</title>
     <link href="./dist/output.css" rel="stylesheet" />
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const header = document.querySelector("nav");
-
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 620) {
-                    header.classList.add("nav-light"); // cambia estilo al scrollear
-                } else {
-                    header.classList.remove("nav-light"); // vuelve al original arriba de todo
-                }
-            });
-        });
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./js/menu.js" defer></script>
 </head>
 
 <body class="bg-vet-cream font-sans">
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 max-md:static max-md:bg-vet-dark">
+    <nav class="nav-light static top-0 left-0 right-0 z-50 px-6 py-4">
         <div class="max-w-full mx-auto flex items-center justify-between">
-            <!-- Logo compacto -->
             <div class="flex items-center">
                 <img src="./assets/Logo 4.png" alt="El Buen Amigo Logo"
                     class="w-24 h-24 object-contain transition-all duration-300">
                 <span
-                    class="text-black text-xl font-bold drop-shadow-lg transition-all duration-300 mb-3  max-xl:hidden">Veterinaria
+                    class="text-white text-xl font-bold drop-shadow-lg transition-all duration-300 mb-3  max-lg:hidden">Veterinaria
                     El Buen Amigo</span>
             </div>
 
-            <!-- Menú central -->
-            <div class="max-lg:hidden items-center absolute left-1/2 transform -translate-x-1/2">
+            <div class="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
                     <div class="flex items-center space-x-8">
-                        <a href="#inicio"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Inicio</a>
-                        <a href="#servicios"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Servicios</a>
-                        <a href="#productos"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Productos</a>
+                        <a href="#"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Inicio</a>
+                        <a href="./pages/servicios.html"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Servicios</a>
+                        <a href="./pages/productos.html"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Productos</a>
                         <a href="#valoranos"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Valoranos</a>
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Valoranos</a>
                         <a href="#app"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">App</a>
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">App</a>
 
                     </div>
                 </div>
             </div>
 
-            <!-- Botones -->
-            <div class="flex items-center space-x-4">
+            <!-- Botón de menú hamburguesa para móvil -->
+            <div class="relative md:hidden">
+                <button id="menu-toggle" class="text-white p-2">
+                    <img src="./assets/burguer.svg" alt="Menu" class="w-6 h-6">
+                </button>
+
+                <!-- Menú móvil desplegable -->
+                <div id="mobile-menu"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
+                    <a href="#" class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
+                    <a href="./pages/servicios.html" class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
+                    <a href="./pages/productos.html" class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
+                    <a href="#valoranos" class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Contacto</a>
+                    <hr class="my-2">
+                    <div class="flex items-center justify-evenly space-x-4">
+                        <a href="./pages/login.html"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
+                            Login
+                        </a>
+                        <a href="./pages/registro.html"
+                            class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
+                            Registro
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4 max-md:hidden">
                 <a href="./pages/login.html"
                     class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
                     Login
@@ -66,10 +78,7 @@
             </div>
         </div>
     </nav>
-    <!-- Servicios rediseñados - ancho completo -->
-    <section id="servicios"
-        class="py-32 bg-gradient-to-br from-white via-[#ede7e3]/30 to-white w-full relative overflow-hidden">
-        <!-- Elementos decorativos de fondo mejorados -->
+    <section id="servicios" class="py-32 w-full relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-20 left-10 w-32 h-32 bg-vet-blue rounded-full animate-pulse"></div>
             <div class="absolute bottom-20 right-10 w-24 h-24 bg-vet-orange rounded-full animate-pulse delay-1000">
@@ -80,85 +89,50 @@
 
         <div class="w-full px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
-                <!-- Grid de servicios rediseñado -->
-                <div class="grid max-lg:grid-cols-1 grid-cols-1 gap-12 mb-32">
-                    <!-- Cirugías - Estilo destacado -->
+                <div class="grid max-lg:grid-cols-1 grid-cols-1 gap-12 mb-8">
                     <div class="group relative ">
                         <div
-                            class="bg-vet-blue rounded-3xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden flex flex-row">
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
-                            </div>
-                            <div class="relative z-10 flex items-start justify-evenly">
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-4">Nuestro Servicios</h3>
-                                    <p class="text-lg text-white/90 leading-relaxed mb-6">
-                                        Procedimientos quirúrgicos de alta precisión con equipamiento de última generación y
-                                        anestesia segura.
-                                    </p>
-                                </div>
-                                <div class="relative z-10 flex flex-col">
-                                    <button class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg items-center justify-center">
-                                        Reservar Turno
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Internación - Estilo moderno -->
-                    <div class="group relative mt-10">
-                        <div
-                            class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 relative overflow-hidden">
-                            <div class="absolute top-6 right-6 w-16 h-16 bg-vet-green/10 rounded-2xl"></div>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-br from-vet-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            </div>
-                            <div class="relative z-10">
-                                <div
-                                    class="w-16 h-16 bg-vet-green/20 rounded-2xl flex items-center justify-center mb-6">
-                                    <svg class="w-8 h-8 text-vet-green" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-xl font-bold text-vet-dark mb-4">Internación 24/7</h3>
-                                <p class="text-base text-vet-dark leading-relaxed mb-6">
-                                    Cuidados intensivos con monitoreo constante, personal especializado y ambiente
-                                    controlado para tu mascota.
+                            class="bg-vet-blue rounded-3xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden flex flex-row justify-between items-center">
+                            <div class="relative z-10 flex flex-col justify-between">
+                                <h3 class="text-2xl font-bold mb-4">Nuestros Servicios</h3>
+                                <p class="text-lg text-white/90 leading-relaxed mb-6">
+                                    Lorem ipsum dolor sit amet consectetur. Ornare eu aliquam nisl sed egestas. Quam
+                                    nibh dolor habitant mauris tortor.
                                 </p>
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <div class="flex items-center text-vet-green">
-                                        <div class="w-2 h-2 bg-vet-green rounded-full mr-2 animate-pulse"></div>
-                                        <span class="text-sm font-medium text-vet-dark">Monitoreo continuo</span>
-                                    </div>
-                                    <div class="flex items-center text-vet-green">
-                                        <div class="w-2 h-2 bg-vet-green rounded-full mr-2 animate-pulse delay-300">
-                                        </div>
-                                        <span class="text-sm font-medium text-vet-dark">Personal experto</span>
-                                    </div>
-                                </div>
-                                <div class="bg-vet-green/10 rounded-lg p-3">
-                                    <div class="flex items-center justify-between text-sm">
-                                        <span class="text-vet-dark font-medium">Camas especiales</span>
-                                        <span class="text-vet-green font-bold">✓</span>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="relative z-10 flex flex-col">
+                                <button
+                                    class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg items-center justify-center">
+                                    Reservar Turno
+                                </button>
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="flex justify-center mb-16">
+                    <div class="bg-[#5fa7b6] rounded-2xl p-6 w-full max-w-7xl shadow-lg">
+                        <h4 class="text-white text-lg font-semibold mb-4">Mis Turnos Vigentes</h4>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="bg-white rounded-xl px-4 py-2 flex flex-col items-center shadow">
+                                <span class="text-vet-dark font-bold">Turno: 00/00/0000</span>
+                                <span class="text-vet-dark text-sm">Servicio:</span>
+                                <button
+                                    class="bg-vet-orange text-white px-3 py-1 rounded-lg text-xs font-medium mt-2">Cancelar</button>
+                            </div>
+                            <div class="bg-white rounded-xl px-4 py-2 flex flex-col items-center shadow">
+                                <span class="text-vet-dark font-bold">Turno: 00/00/0000</span>
+                                <span class="text-vet-dark text-sm">Servicio:</span>
+                                <button
+                                    class="bg-vet-orange text-white px-3 py-1 rounded-lg text-xs font-medium mt-2">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 bg-gradient-to-br from-white via-[#ede7e3]/30 to-white w-full relative overflow-hidden">
-        <!-- Elementos decorativos de fondo como en otras secciones -->
+    <section class="py-32 w-full relative overflow-hidden -mt-10">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-20 left-10 w-32 h-32 bg-vet-blue rounded-full animate-pulse"></div>
             <div class="absolute bottom-20 right-10 w-24 h-24 bg-vet-orange rounded-full animate-pulse delay-1000">
@@ -471,6 +445,7 @@
 
     <!-- Clientes compactos - ancho completo -->
     <section class="py-32 bg-[#ede7e3] w-full">
+
         <div class="w-full px-6">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-20 -mt-14">

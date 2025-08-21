@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login - El Buen Amigo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../dist/output.css">
 </head>
 
 <body class="min-h-screen bg-white">
@@ -22,15 +22,17 @@
 
         <!-- Card formulario -->
         <div class="bg-[#BFA58D]/95 rounded-xl shadow-[0_10px_20px_rgba(0,0,0,0.15)] px-5 py-6 sm:px-8 sm:py-8">
-          <form action="#" method="post" class="flex flex-col items-center">
+          <form action="../php/login.php" method="post" class="flex flex-col items-center">
             <input
               type="email"
+              name="email"
               placeholder="Email"
               class="w-full h-12 sm:h-14 px-4 rounded-xl shadow focus:outline-none bg-white/90 placeholder-black/80 mb-6 sm:mb-8"
               required
             />
             <input
               type="password"
+              name="contrasena"
               placeholder="Contraseña"
               class="w-full h-12 sm:h-14 px-4 rounded-xl shadow focus:outline-none bg-white/90 placeholder-black/80 mb-8 sm:mb-10"
               required

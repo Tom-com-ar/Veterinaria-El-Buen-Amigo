@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-    <script src="../js/servicios.js"></script>
+    <script src="../js/menu.js" defer></script>
+    <script src="../js/servicios.js" defer></script>
+
 </head>
 
 <body class="bg-vet-cream min-h-screen">
@@ -29,7 +31,7 @@
             <div class="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
                     <div class="flex items-center space-x-8">
-                        <a href="../index.html"
+                        <a href="../home.html"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Inicio</a>
                         <a href="..#servicios"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Servicios</a>
@@ -44,21 +46,89 @@
                 </div>
             </div>
 
-            <!-- Botones -->
-            <div class="flex items-center space-x-4">
-                <button
-                    class="text-white hover:text-black transition-colors duration-300 text-sm font-medium drop-shadow-lg">
-                    Login
+            <!-- Botón de menú hamburguesa para móvil -->
+            <div class="relative md:hidden">
+                <button id="menu-toggle" class="text-white p-2">
+                    <img src="../assets/burguer.svg" alt="Menu" class="w-6 h-6">
                 </button>
-                <button
+
+                <!-- Menú móvil desplegable -->
+                <div id="mobile-menu"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
+                    <a href="./../home.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
+                    <a href="./pages/servicios.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
+                    <a href="./pages/productos.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
+                    <a href="#valoranos"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Contacto</a>
+                    <hr class="my-2">
+                    <div class="flex items-center justify-evenly space-x-4">
+                        <a href="./pages/login.html"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
+                            Login
+                        </a>
+                        <a href="./pages/registro.html"
+                            class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
+                            Registro
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4 max-md:hidden">
+                <a href="../pages/login.html"
+                    class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
+                    Login
+                </a>
+                <a href="../pages/registro.html"
                     class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
                     Registro
-                </button>
+                </a>
             </div>
         </div>
     </nav>
     <div class="max-w-6xl mx-auto py-12 px-4">
         <h1 class="text-4xl font-bold text-center text-vet-dark mb-12">Reserva tu Servicio</h1>
+    </div>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Paso 1: Servicio a Reservar -->
+            <div id="paso1" class="bg-sky-300 rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">1. Servicio a Reservar</h2>
+                <select id="servicioSelect" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300">
+                    <option value="">Seleccione un servicio</option>
+                    <option value="consulta">Consulta General</option>
+                    <option value="vacunacion">Vacunación</option>
+                    <option value="peluqueria">Peluquería</option>
+                    <option value="cirugia">Cirugía</option>
+                </select>
+            </div>
+
+            <!-- Paso 2: Persona a elegir -->
+            <div id="paso2" class="bg-sky-300 rounded-lg p-6 mb-6 hidden">
+                <h2 class="text-xl font-semibold mb-4">2. Persona a elegir</h2>
+                <div class="space-y-4">
+                    <!-- Los items de profesionales se generarán dinámicamente con JavaScript -->
+                </div>
+            </div>
+
+            <!-- Paso 3: Calendario -->
+            <div id="paso3" class="bg-sky-300 rounded-lg p-6 mb-6 hidden">
+                <h2 class="text-xl font-semibold mb-4">3. Seleccionar Fecha y Hora</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div id="calendario" class="bg-[#1a1b1e] text-white p-6 rounded-lg"></div>
+                </div>
+            </div>
+
+            <!-- Botón de Reservar -->
+            <div class="text-center">
+                <button id="btnReservar" class="bg-vet-orange text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-orange-500 transition-colors duration-300 hidden">
+                    Reservar Turno
+                </button>
+            </div>
+        </div>
     </div>
 </body>
 

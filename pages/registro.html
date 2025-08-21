@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registro - El Buen Amigo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../dist/output.css">
 </head>
 
 <body class="min-h-screen bg-white">
@@ -26,25 +26,52 @@
 
         <!-- Tarjeta -->
         <div class="bg-[#BFA58D]/95 rounded-2xl shadow-[0_12px_24px_rgba(0,0,0,0.18)] px-5 py-6 sm:px-8 sm:py-8">
-          <form action="#" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          <form action="../php/registro.php" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             <!-- Fila 1 -->
-            <input type="text" placeholder="Nombre" autocomplete="given-name"
+            <input 
+            type="text"
+            name="nombre"
+            placeholder="Nombre" 
+            autocomplete="given-name"
                    class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
-            <input type="text" placeholder="Apellido" autocomplete="family-name"
+            <input 
+            type="text" 
+            name="apellido"
+            placeholder="Apellido" 
+            autocomplete="family-name"
                    class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
             <!-- Fila 2 -->
-            <input type="tel" placeholder="Teléfono" autocomplete="tel"
+            <input 
+            type="tel" 
+            name="telefono"
+            placeholder="Teléfono" 
+            autocomplete="tel"
                    class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
-            <input type="text" placeholder="Dirección" autocomplete="street-address"
+            <input 
+            type="text"
+            name="direccion" 
+            placeholder="Dirección" 
+            autocomplete="street-address"
                    class="h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
             <!-- Email (ocupa 2) -->
-            <input type="email" placeholder="Email" autocomplete="email"
+            <input 
+            type="email"
+            name="email" 
+            placeholder="Email" 
+            autocomplete="email"
                    class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
             <!-- Password (ocupa 2) -->
-            <input type="password" placeholder="Contraseña" autocomplete="new-password"
+            <input 
+            type="password"
+            name="contrasena" 
+            placeholder="Contraseña" 
+            autocomplete="new-password"
                    class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
             <!-- Confirm (ocupa 2) -->
-            <input type="password" placeholder="Confirmar Contraseña" autocomplete="new-password"
+            <input 
+            type="password" 
+            placeholder="Confirmar Contraseña" 
+            autocomplete="new-password"
                    class="md:col-span-2 h-12 sm:h-14 px-4 rounded-xl shadow bg-white/90 placeholder-black/80 focus:outline-none">
 
             <!-- Botón (alineado a la derecha en md) -->
