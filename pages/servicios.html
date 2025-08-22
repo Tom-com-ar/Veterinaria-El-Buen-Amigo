@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Servicios</title>
     <link href="../dist/output.css" rel="stylesheet" />
@@ -12,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script src="../js/menu.js" defer></script>
     <script src="../js/servicios.js" defer></script>
-
 </head>
 
 <body class="bg-vet-cream min-h-screen">
@@ -92,41 +92,77 @@
     <div class="max-w-6xl mx-auto py-12 px-4">
         <h1 class="text-4xl font-bold text-center text-vet-dark mb-12">Reserva tu Servicio</h1>
     </div>
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto">
-            <!-- Paso 1: Servicio a Reservar -->
-            <div id="paso1" class="bg-sky-300 rounded-lg p-6 mb-6">
-                <h2 class="text-xl font-semibold mb-4">1. Servicio a Reservar</h2>
-                <select id="servicioSelect" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300">
-                    <option value="">Seleccione un servicio</option>
-                    <option value="consulta">Consulta General</option>
-                    <option value="vacunacion">Vacunación</option>
-                    <option value="peluqueria">Peluquería</option>
-                    <option value="cirugia">Cirugía</option>
+    <div class="container mx-auto py-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Columna 1: Servicios -->
+            <div class="bg-gray-800 p-6 rounded-lg flex flex-col">
+                <h2 class="text-2xl font-bold mb-4">Servicios</h2>
+                <!-- Selector de sucursal -->
+                <label for="sucursal" class="mb-2">Elige la sucursal:</label>
+                <select id="sucursal" class="mb-4 p-2 rounded bg-gray-700 text-white">
+                    <option value="caballito">Caballito - Humboldt 1967, Piso 2</option>
+                    <option value="flores">Flores - Av. Rivadavia 6500</option>
+                </select>
+                <div class="mb-4">
+                    <span class="font-semibold">Dirección:</span>
+                    <span id="direccion" class="block mt-1">Humboldt 1967, Piso 2, Caballito</span>
+                </div>
+                <!-- Selector de servicio -->
+                <label for="servicio" class="mb-2">Elige un servicio:</label>
+                <select id="servicio" class="mb-4 p-2 rounded bg-gray-700 text-white">
+                    <option value="">Selecciona...</option>
+                    <option value="vacuna">Vacuna</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="desparasitacion">Desparasitación</option>
+                </select>
+                <div id="vacuna-fields" class="hidden flex-col gap-2">
+                    <label for="tipo-vacuna">Tipo de vacuna:</label>
+                    <select id="tipo-vacuna" class="mb-2 p-2 rounded bg-gray-700 text-white">
+                        <option value="">Selecciona...</option>
+                        <option value="rabia">Rabia</option>
+                        <option value="moquillo">Moquillo</option>
+                        <option value="parvovirus">Parvovirus</option>
+                    </select>
+                    <label for="dosis">Dosis:</label>
+                    <select id="dosis" class="mb-2 p-2 rounded bg-gray-700 text-white">
+                        <option value="">Selecciona...</option>
+                        <option value="1ra">1ra</option>
+                        <option value="2da">2da</option>
+                        <option value="refuerzo">Refuerzo</option>
+                    </select>
+                    <label for="comentario">Comentario:</label>
+                    <textarea id="comentario" rows="2" class="p-2 rounded bg-gray-700 text-white"
+                        placeholder="Comentario breve..."></textarea>
+                </div>
+            </div>
+            <!-- Columna 2: Veterinarios -->
+            <div class="bg-gray-800 p-6 rounded-lg flex flex-col">
+                <h2 class="text-2xl font-bold mb-4">Veterinarios</h2>
+                <label for="veterinario" class="mb-2">Elige un veterinario:</label>
+                <select id="veterinario" class="p-2 rounded bg-gray-700 text-white">
+                    <option value="">Selecciona...</option>
+                    <option value="dr_gomez">Dr. Gómez</option>
+                    <option value="dra_perez">Dra. Pérez</option>
+                    <option value="dr_lopez">Dr. López</option>
                 </select>
             </div>
-
-            <!-- Paso 2: Persona a elegir -->
-            <div id="paso2" class="bg-sky-300 rounded-lg p-6 mb-6 hidden">
-                <h2 class="text-xl font-semibold mb-4">2. Persona a elegir</h2>
-                <div class="space-y-4">
-                    <!-- Los items de profesionales se generarán dinámicamente con JavaScript -->
+            <!-- Columna 3: Calendario -->
+            <div class="bg-gray-800 p-6 rounded-lg flex flex-col">
+                <h2 class="text-2xl font-bold mb-4">Calendario</h2>
+                <div id="calendario" class="bg-gray-900 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold">agosto 2025</span>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 mb-2 text-center text-gray-400 text-sm">
+                        <div>DOM</div><div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div>
+                    </div>
+                    <div id="dias-grid" class="grid grid-cols-7 gap-2"></div>
                 </div>
             </div>
-
-            <!-- Paso 3: Calendario -->
-            <div id="paso3" class="bg-sky-300 rounded-lg p-6 mb-6 hidden">
-                <h2 class="text-xl font-semibold mb-4">3. Seleccionar Fecha y Hora</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div id="calendario" class="bg-[#1a1b1e] text-white p-6 rounded-lg"></div>
-                </div>
-            </div>
-
-            <!-- Botón de Reservar -->
-            <div class="text-center">
-                <button id="btnReservar" class="bg-vet-orange text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-orange-500 transition-colors duration-300 hidden">
-                    Reservar Turno
-                </button>
+            <!-- Columna 4: Horarios -->
+            <div class="bg-gray-800 p-6 rounded-lg flex flex-col">
+                <h2 class="text-2xl font-bold mb-4">Horarios</h2>
+                <div id="horarios" class="flex flex-col gap-2"></div>
             </div>
         </div>
     </div>
