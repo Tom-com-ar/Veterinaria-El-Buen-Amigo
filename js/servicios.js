@@ -1,422 +1,233 @@
-// --- Calendario visual dinámico con cambio de mes ---
-document.addEventListener('DOMContentLoaded', function () {
-    const diasGrid = document.getElementById('dias-grid');
-    const veterinarioSelect = document.getElementById('veterinario');
-    const horariosDiv = document.getElementById('horarios');
-    const calendarioHeader = document.querySelector('#calendario .flex');
-    let fechaSeleccionada = null;
-    let mesActual = 7; // Agosto (0=Enero)
-    let anioActual = 2025;
-
-    // Meses en español
-    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-
-    // Veterinarios y sus días disponibles
-    const veterinarios = {
-        dr_gomez: {
-            dias: ['2025-08-25', '2025-08-26', '2025-08-28'],
-            horarios: ['09:00', '10:00', '11:00', '12:00', '13:00']
-        },
-        dra_perez: {
-            dias: ['2025-08-26', '2025-08-27', '2025-08-29'],
-            horarios: ['14:00', '15:00', '16:00', '17:00']
-        },
-        dr_lopez: {
-            dias: ['2025-08-25', '2025-08-27', '2025-08-30'],
-            horarios: ['08:00', '09:00', '10:00', '11:00']
+const style = document.createElement('style');
+style.textContent = `
+    .flatpickr-calendar {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    @media (min-width: 768px) {
+        .flatpickr-calendar {
+            max-width: 300px !important;
+            width: 350px !important;
         }
-    };
-
-    function getDiasMes(mes, anio) {
-        const primerDia = new Date(anio, mes, 1);
-        const primerDiaSemana = primerDia.getDay();
-        const diasEnMes = new Date(anio, mes+1, 0).getDate();
-        const dias = [];
-        for (let i=0; i<primerDiaSemana; i++) dias.push('');
-        for (let d=1; d<=diasEnMes; d++) dias.push(d);
-        return dias;
     }
 
-    function renderCalendario() {
-        // Actualizar header
-        if (calendarioHeader) {
-            calendarioHeader.innerHTML = `
-                <button id="prevMes" class="px-2 py-1 rounded hover:bg-gray-700 text-white">&#8592;</button>
-                <span class="text-lg font-semibold">${meses[mesActual]} ${anioActual}</span>
-                <button id="nextMes" class="px-2 py-1 rounded hover:bg-gray-700 text-white">&#8594;</button>
-            `;
-            calendarioHeader.querySelector('#prevMes').onclick = () => {
-                mesActual--;
-                if (mesActual < 0) { mesActual = 11; anioActual--; }
-                fechaSeleccionada = null;
-                renderCalendario();
-                horariosDiv.innerHTML = '';
-            };
-            calendarioHeader.querySelector('#nextMes').onclick = () => {
-                mesActual++;
-                if (mesActual > 11) { mesActual = 0; anioActual++; }
-                fechaSeleccionada = null;
-                renderCalendario();
-                horariosDiv.innerHTML = '';
-            };
-        }
-        diasGrid.innerHTML = '';
-        const vet = veterinarioSelect.value;
-        let diasDisponibles = [];
-        if (vet && veterinarios[vet]) {
-            diasDisponibles = veterinarios[vet].dias.filter(d => {
-                const [y,m,day] = d.split('-');
-                return parseInt(y) === anioActual && parseInt(m)-1 === mesActual;
-            }).map(d => parseInt(d.split('-')[2]));
-        }
-        const diasMes = getDiasMes(mesActual, anioActual);
-        diasMes.forEach((dia, idx) => {
-            const div = document.createElement('div');
-            if (dia === '') {
-                div.className = 'h-10';
-            } else {
-                // Calcular el día de la semana (0=domingo, 6=sábado)
-                const weekDay = ((idx % 7));
-                const esLaboral = weekDay >= 1 && weekDay <= 6; // lunes a sábado
-                const disponible = diasDisponibles.includes(dia) && esLaboral;
-                div.textContent = dia;
-                div.className = `h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all ${disponible ? 'bg-white text-black font-bold shadow-lg' : 'bg-gray-800 text-gray-400'} ${esLaboral ? '' : 'opacity-50 cursor-not-allowed'}`;
-                if (disponible) {
-                    div.addEventListener('click', () => {
-                        fechaSeleccionada = `${anioActual}-${(mesActual+1).toString().padStart(2,'0')}-${dia.toString().padStart(2,'0')}`;
-                        renderHorarios();
-                        // Resalta el seleccionado
-                        Array.from(diasGrid.children).forEach(c => c.classList.remove('ring-2','ring-vet-orange'));
-                        div.classList.add('ring-2','ring-vet-orange');
-                    });
-                }
+    .flatpickr-day {
+        height: 40px !important;
+        line-height: 40px !important;
+    }
+`;
+document.head.appendChild(style);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del DOM
+    const servicioSelect = document.getElementById('servicio-form');
+    const veterinariosContainer = document.getElementById('veterinarios');
+    const horariosContainer = document.getElementById('horarios');
+    const confirmarBtn = document.getElementById('confirmar-reserva');
+
+    // Configuración del calendario
+    flatpickr("#calendario", {
+        locale: {
+            ...flatpickr.l10ns.es, // Mantener la configuración en español
+            firstDayOfWeek: 1 // Comenzar la semana en lunes
+        },
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        inline: true,
+        static: true,
+        monthSelectorType: 'static',
+        enable: [
+            function(date) {
+                // Habilitar solo de lunes (1) a sábado (6)
+                return date.getDay() !== 0;
             }
-            diasGrid.appendChild(div);
-        });
-    }
-
-    function renderHorarios() {
-        horariosDiv.innerHTML = '';
-        const vet = veterinarioSelect.value;
-        if (vet && fechaSeleccionada && veterinarios[vet]) {
-            if (veterinarios[vet].dias.includes(fechaSeleccionada)) {
-                veterinarios[vet].horarios.forEach(horario => {
-                    const btn = document.createElement('button');
-                    btn.textContent = horario;
-                    btn.className = 'bg-vet-orange text-white px-4 py-2 rounded mb-2 hover:bg-orange-500';
-                    horariosDiv.appendChild(btn);
-                });
-            } else {
-                horariosDiv.innerHTML = '<span class="text-red-400">No hay horarios disponibles para este día.</span>';
+        ],
+        onChange: function(selectedDates, dateStr) {
+            if (selectedDates.length > 0) {
+                mostrarHorarios(dateStr);
             }
         }
-    }
+    });
 
-    if (veterinarioSelect) {
-        veterinarioSelect.addEventListener('change', () => {
-            fechaSeleccionada = null;
-            renderCalendario();
-            horariosDiv.innerHTML = '';
-        });
-        renderCalendario();
-    }
-});
-// --- Calendario visual tipo grid ---
-document.addEventListener('DOMContentLoaded', function () {
-    const diasGrid = document.getElementById('dias-grid');
-    const veterinarioSelect = document.getElementById('veterinario');
-    const horariosDiv = document.getElementById('horarios');
-    let fechaSeleccionada = null;
-
-    // Días de agosto 2025
-    const diasMes = [
-        '', '', '', '', '', '', '', // 1-2-3-4-5-6-7 (vacío para que el 1 caiga jueves)
-        1,2,3,4,5,6,7,
-        8,9,10,11,12,13,14,
-        15,16,17,18,19,20,21,
-        22,23,24,25,26,27,28,
-        29,30,31
-    ];
-
-    // Veterinarios y sus días disponibles
-    const veterinarios = {
-        dr_gomez: {
-            dias: ['2025-08-25', '2025-08-26', '2025-08-28'],
-            horarios: ['09:00', '10:00', '11:00', '12:00', '13:00']
-        },
-        dra_perez: {
-            dias: ['2025-08-26', '2025-08-27', '2025-08-29'],
-            horarios: ['14:00', '15:00', '16:00', '17:00']
-        },
-        dr_lopez: {
-            dias: ['2025-08-25', '2025-08-27', '2025-08-30'],
-            horarios: ['08:00', '09:00', '10:00', '11:00']
-        }
-    };
-
-    function renderCalendario() {
-        diasGrid.innerHTML = '';
-        const vet = veterinarioSelect.value;
-        let diasDisponibles = [];
-        if (vet && veterinarios[vet]) {
-            diasDisponibles = veterinarios[vet].dias.map(d => parseInt(d.split('-')[2]));
-        }
-        diasMes.forEach((dia, idx) => {
-            const div = document.createElement('div');
-            if (dia === '') {
-                div.className = 'h-10';
-            } else {
-                // Calcular el día de la semana (0=domingo, 6=sábado)
-                const weekDay = ((idx % 7));
-                const esLaboral = weekDay >= 1 && weekDay <= 6; // lunes a sábado
-                const disponible = diasDisponibles.includes(dia) && esLaboral;
-                div.textContent = dia;
-                div.className = `h-10 flex items-center justify-center rounded-lg cursor-pointer transition-all ${disponible ? 'bg-white text-black font-bold shadow-lg' : 'bg-gray-800 text-gray-400'} ${esLaboral ? '' : 'opacity-50 cursor-not-allowed'}`;
-                if (disponible) {
-                    div.addEventListener('click', () => {
-                        fechaSeleccionada = `2025-08-${dia.toString().padStart(2,'0')}`;
-                        renderHorarios();
-                        // Resalta el seleccionado
-                        Array.from(diasGrid.children).forEach(c => c.classList.remove('ring-2','ring-vet-orange'));
-                        div.classList.add('ring-2','ring-vet-orange');
-                    });
-                }
-            }
-            diasGrid.appendChild(div);
-        });
-    }
-
-    function renderHorarios() {
-        horariosDiv.innerHTML = '';
-        const vet = veterinarioSelect.value;
-        if (vet && fechaSeleccionada && veterinarios[vet]) {
-            if (veterinarios[vet].dias.includes(fechaSeleccionada)) {
-                veterinarios[vet].horarios.forEach(horario => {
-                    const btn = document.createElement('button');
-                    btn.textContent = horario;
-                    btn.className = 'bg-vet-orange text-white px-4 py-2 rounded mb-2 hover:bg-orange-500';
-                    horariosDiv.appendChild(btn);
-                });
-            } else {
-                horariosDiv.innerHTML = '<span class="text-red-400">No hay horarios disponibles para este día.</span>';
-            }
-        }
-    }
-
-    if (veterinarioSelect) {
-        veterinarioSelect.addEventListener('change', () => {
-            fechaSeleccionada = null;
-            renderCalendario();
-            horariosDiv.innerHTML = '';
-        });
-        renderCalendario();
-    }
-});
-// Cambiar dirección según sucursal seleccionada
-document.addEventListener('DOMContentLoaded', function () {
-    const sucursalSelect = document.getElementById('sucursal');
-    const direccionSpan = document.getElementById('direccion');
-    if (sucursalSelect && direccionSpan) {
-        sucursalSelect.addEventListener('change', function () {
-            if (sucursalSelect.value === 'caballito') {
-                direccionSpan.textContent = 'Humboldt 1967, Piso 2, Caballito';
-            } else if (sucursalSelect.value === 'flores') {
-                direccionSpan.textContent = 'Av. Rivadavia 6500, Flores';
-            }
-        });
-    }
-});
-// --- Nueva lógica para la UI de 4 columnas ---
-document.addEventListener('DOMContentLoaded', function () {
-    // Mostrar campos de vacuna si se elige "Vacuna"
-    const servicioSelectCol = document.getElementById('servicio');
-    const vacunaFields = document.getElementById('vacuna-fields');
-    if (servicioSelectCol) {
-        servicioSelectCol.addEventListener('change', function () {
-            if (servicioSelectCol.value === 'vacuna') {
-                vacunaFields.classList.remove('hidden');
-            } else {
-                vacunaFields.classList.add('hidden');
-            }
-        });
-    }
-
-    // Veterinarios y sus horarios laborales (ejemplo)
-    const veterinarios = {
-        dr_gomez: {
-            dias: ['2025-08-25', '2025-08-26', '2025-08-28'],
-            horarios: ['09:00', '10:00', '11:00', '12:00', '13:00']
-        },
-        dra_perez: {
-            dias: ['2025-08-26', '2025-08-27', '2025-08-29'],
-            horarios: ['14:00', '15:00', '16:00', '17:00']
-        },
-        dr_lopez: {
-            dias: ['2025-08-25', '2025-08-27', '2025-08-30'],
-            horarios: ['08:00', '09:00', '10:00', '11:00']
-        }
-    };
-
-    const veterinarioSelect = document.getElementById('veterinario');
-    const fechaInput = document.getElementById('fecha');
-    const horariosDiv = document.getElementById('horarios');
-
-    function actualizarHorarios() {
-        if (!horariosDiv) return;
-        horariosDiv.innerHTML = '';
-        const vet = veterinarioSelect ? veterinarioSelect.value : null;
-        const fecha = fechaInput ? fechaInput.value : null;
-        if (vet && fecha && veterinarios[vet]) {
-            if (veterinarios[vet].dias.includes(fecha)) {
-                veterinarios[vet].horarios.forEach(horario => {
-                    const btn = document.createElement('button');
-                    btn.textContent = horario;
-                    btn.className = 'bg-vet-orange text-white px-4 py-2 rounded mb-2 hover:bg-orange-500';
-                    horariosDiv.appendChild(btn);
-                });
-            } else {
-                horariosDiv.innerHTML = '<span class="text-red-400">No hay horarios disponibles para este día.</span>';
-            }
-        }
-    }
-
-    if (veterinarioSelect) veterinarioSelect.addEventListener('change', actualizarHorarios);
-    if (fechaInput) fechaInput.addEventListener('change', actualizarHorarios);
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // Elementos DOM
-    const paso1 = document.getElementById('paso1');
-    const paso2 = document.getElementById('paso2');
-    const paso3 = document.getElementById('paso3');
-    const servicioSelect = document.getElementById('servicioSelect');
-    const btnReservar = document.getElementById('btnReservar');
-
-    // Función para mostrar un elemento con animación
-    function mostrarElemento(elemento) {
-        elemento.classList.remove('hidden');
-        // Forzar un reflow para que la animación funcione
-        void elemento.offsetWidth;
-        elemento.classList.remove('opacity-0', 'translate-y-4');
-    }
-
-    // Datos de ejemplo para los profesionales
-    const profesionales = [
-        {
-            id: 1,
-            nombre: 'Leslie Alexander',
-            foto: 'https://randomuser.me/api/portraits/women/45.jpg',
-            horario: '1:00 PM - 2:30 PM'
-        },
-        {
-            id: 2,
-            nombre: 'Michael Foster',
-            foto: 'https://randomuser.me/api/portraits/men/35.jpg',
-            horario: '3:00 PM - 4:30 PM'
-        },
-        {
-            id: 3,
-            nombre: 'Lindsay Walton',
-            foto: 'https://randomuser.me/api/portraits/women/32.jpg',
-            horario: '7:00 PM - 8:30 PM'
-        }
-    ];
-
-    // Función para mostrar el paso 2 con animación
-    function mostrarPaso2() {
-        console.log('Mostrando paso 2'); // Debug
-        const contenedorProfesionales = paso2.querySelector('.space-y-4');
-        contenedorProfesionales.innerHTML = ''; // Limpiar contenedor
-
-        profesionales.forEach(prof => {
-            const elemento = document.createElement('div');
-            elemento.className = 'professional-card';
-            elemento.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <img src="${prof.foto}" alt="${prof.nombre}" class="w-10 h-10 rounded-full object-cover">
-                    <div class="flex flex-col">
-                        <h3 class="font-medium text-gray-900">${prof.nombre}</h3>
-                        <p class="text-gray-500 text-sm">${prof.horario}</p>
-                    </div>
-                </div>
-                <button class="btn-seleccionar bg-sky-400 text-white px-4 py-1.5 rounded-lg hover:bg-sky-500 transition-colors duration-300 text-sm"
-                        data-id="${prof.id}">
-                    Seleccionar
-                </button>
-            `;
-            contenedorProfesionales.appendChild(elemento);
-        });
-
-        mostrarElemento(paso2);
-    }
-
-    // Función para mostrar el paso 3 con animación
-    function mostrarPaso3() {
-        mostrarElemento(paso3);
-        
-        // Inicializar el calendario
-        const calendario = flatpickr("#calendario", {
-            inline: true,
-            locale: "es",
-            minDate: "today",
-            dateFormat: "Y-m-d",
-            onChange: function(selectedDates, dateStr) {
-                actualizarHorarios(dateStr);
-            }
-        });
-
-        btnReservar.classList.remove('hidden');
-    }
-
-    // Función para actualizar los horarios disponibles
-    function actualizarHorarios(fecha) {
-        const horariosContainer = document.getElementById('horarios').querySelector('.space-y-2');
-        const horarios = [
-            "09:00 AM - 10:00 AM",
-            "10:00 AM - 11:00 AM",
-            "11:00 AM - 12:00 PM",
-            "02:00 PM - 03:00 PM",
-            "03:00 PM - 04:00 PM",
-            "04:00 PM - 05:00 PM"
+    // Función para cargar los servicios
+    function cargarServicios() {
+        const servicios = [
+            { id: 'consulta', nombre: 'Consulta General' },
+            { id: 'vacuna', nombre: 'Vacunación' },
+            { id: 'cirugia', nombre: 'Cirugía' },
+            { id: 'peluqueria', nombre: 'Peluquería' }
         ];
 
-        horariosContainer.innerHTML = horarios.map(horario => `
-            <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-300">
-                ${horario}
-            </button>
-        `).join('');
+        const select = document.createElement('select');
+        select.id = 'servicio';
+        select.className = 'w-full p-3 rounded-lg border border-gray-300';
+        
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Selecciona un servicio';
+        select.appendChild(defaultOption);
+
+        servicios.forEach(servicio => {
+            const option = document.createElement('option');
+            option.value = servicio.id;
+            option.textContent = servicio.nombre;
+            select.appendChild(option);
+        });
+
+        select.addEventListener('change', (e) => {
+            cargarVeterinarios(e.target.value);
+            resetearSelecciones(['veterinario', 'fecha', 'hora']);
+        });
+
+        servicioForm.appendChild(select);
     }
 
-    // Event Listeners
-    servicioSelect.addEventListener('change', (e) => {
-        if (e.target.value) {
-            mostrarPaso2();
+    // Función para cargar veterinarios según el servicio
+    function cargarVeterinarios(servicioId) {
+        veterinariosContainer.innerHTML = '';
+        
+        if (!servicioId) return;
+
+        const veterinarios = obtenerVeterinariosPorServicio(servicioId);
+        
+        veterinarios.forEach(vet => {
+            const button = document.createElement('button');
+            button.className = 'w-full p-4 text-left rounded-lg bg-gray-100 hover:bg-vet-orange hover:text-white transition-colors';
+            button.innerHTML = `
+                <div class="font-medium">${vet.nombre}</div>
+            `;
+
+            button.addEventListener('click', () => seleccionarVeterinario(vet, button));
+            veterinariosContainer.appendChild(button);
+        });
+    }
+
+    // Función para mostrar horarios disponibles
+    function mostrarHorarios(fecha) {
+        const horarios = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '12:00', '12:30', '15:00', '15:30', '16:00', '16:30',
+            '17:00', '17:30', '18:00'
+        ];
+
+        const horariosContainer = document.getElementById('horarios');
+        horariosContainer.classList.remove('hidden');
+
+        // Crear estructura del dropdown
+        horariosContainer.innerHTML = `
+            <h3 class="text-lg font-medium mb-2">Horarios Disponibles</h3>
+            <div class="relative">
+                <button id="horario-dropdown" type="button" 
+                    class="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-left flex justify-between items-center">
+                    <span id="horario-seleccionado">Seleccionar horario</span>
+                    <svg class="w-4 h-4 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+                <div id="horario-opciones" 
+                    class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
+                    <div class="py-1" role="menu">
+                        ${horarios.map(hora => `
+                            <button type="button" 
+                                class="w-full px-4 py-2 text-left hover:bg-gray-100 focus:bg-gray-100 transition-colors" 
+                                role="menuitem"
+                                data-hora="${hora}">
+                                ${hora}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Obtener referencias a los elementos
+        const dropdown = document.getElementById('horario-dropdown');
+        const opciones = document.getElementById('horario-opciones');
+        const flecha = dropdown.querySelector('svg');
+
+        // Event listener para el botón del dropdown
+        dropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const estaOculto = opciones.classList.contains('hidden');
+            
+            // Toggle del menú
+            opciones.classList.toggle('hidden');
+            
+            // Rotar flecha
+            flecha.style.transform = estaOculto ? 'rotate(180deg)' : '';
+        });
+
+        // Event listeners para las opciones
+        opciones.querySelectorAll('button').forEach(opcion => {
+            opcion.addEventListener('click', (e) => {
+                const horaSeleccionada = e.target.dataset.hora;
+                document.getElementById('horario-seleccionado').textContent = horaSeleccionada;
+                opciones.classList.add('hidden');
+                flecha.style.transform = '';
+                confirmarBtn.disabled = false;
+            });
+        });
+
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!horariosContainer.contains(e.target)) {
+                opciones.classList.add('hidden');
+                flecha.style.transform = '';
+            }
+        });
+    }
+
+    // Función para seleccionar veterinario
+    function seleccionarVeterinario(veterinario, buttonElement) {
+        // Resetear selección previa
+        document.querySelectorAll('#veterinarios button').forEach(btn => {
+            btn.classList.remove('bg-vet-orange', 'text-white');
+        });
+        
+        buttonElement.classList.add('bg-vet-orange', 'text-white');
+    }
+
+    // Función para seleccionar horario
+    function seleccionarHorario(hora, buttonElement) {
+        document.querySelectorAll('#horarios button').forEach(btn => {
+            btn.classList.remove('bg-vet-orange', 'text-white');
+        });
+        
+        buttonElement.classList.add('bg-vet-orange', 'text-white');
+        confirmarBtn.disabled = false;
+    }
+
+    // Función para resetear selecciones
+    function resetearSelecciones(elementos) {
+        elementos.forEach(elemento => {
+            switch(elemento) {
+                case 'veterinario':
+                    document.querySelectorAll('#veterinarios button').forEach(btn => {
+                        btn.classList.remove('bg-vet-orange', 'text-white');
+                    });
+                    break;
+                case 'fecha':
+                    // El calendario se resetea automáticamente
+                    break;
+                case 'hora':
+                    horariosContainer.classList.add('hidden');
+                    confirmarBtn.disabled = true;
+                    break;
+            }
+        });
+    }
+
+    // Evento para el botón de confirmar
+    confirmarBtn.addEventListener('click', () => {
+        const servicio = document.getElementById('servicio').value;
+        const veterinario = document.querySelector('#veterinarios button.bg-vet-orange')?.textContent;
+        const fecha = document.querySelector('.flatpickr-input').value;
+        const hora = document.querySelector('#horarios button.bg-vet-orange')?.textContent;
+
+        if (servicio && veterinario && fecha && hora) {
+            // Aquí puedes agregar la lógica para procesar la reserva
+            console.log('Reserva confirmada:', { servicio, veterinario, fecha, hora });
         }
     });
-
-    // Event delegation para los botones de seleccionar profesional
-    paso2.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-seleccionar')) {
-            mostrarPaso3();
-        }
-    });
-
-    // CSS para las animaciones
-    const style = document.createElement('style');
-    style.textContent = `
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(style);
 });

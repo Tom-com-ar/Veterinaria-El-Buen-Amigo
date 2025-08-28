@@ -3,7 +3,7 @@
 @font-face {
     font-family: 'Poppins';
     src: url('https://fonts.gstatic.com/s/poppins/v15/pxiYyp8kv8JHgFVrJJLucXc.woff2') format('woff2'),
-         url('https://fonts.gstatic.com/s/poppins/v15/pxiYyp8kv8JHgFVrJJLucXc.woff') format('woff');
+        url('https://fonts.gstatic.com/s/poppins/v15/pxiYyp8kv8JHgFVrJJLucXc.woff') format('woff');
 }
 
 @theme {
@@ -68,6 +68,23 @@
     background-color: rgba(22, 105, 122, 0.9) !important;
 }
 
-button{
+button {
     cursor: pointer;
+}
+
+.flatpickr-calendar {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+@media (min-width: 768px) {
+    .flatpickr-calendar {
+        max-width: 350px !important;
+        width: 350px !important;
+    }
+}
+
+.flatpickr-day {
+    height: 40px !important;
+    line-height: 40px !important;
 }
