@@ -20,7 +20,7 @@
 
     /* Responsive */
 
-    --breakpoint-xs: 320px;
+    --breakpoint-xs: 20rem;
 }
 
 * {
