@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Buen Amigo - Veterinaria</title>
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="../../js/menu.js" defer></script>
+</head>
+
+<body class="bg-vet-cream">
+    <header>
+
+    </header>
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 max-md:static max-md:bg-vet-dark">
+        <div class="max-w-full mx-auto flex items-center justify-between">
+            <!-- Logo compacto -->
+            <div class="flex items-center">
+                <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo"
+                    class="w-24 h-24 object-contain transition-all duration-300">
+            </div>
+
+            <!-- Menú central -->
+            <div class="max-md:hidden items-center absolute left-1/2 transform -translate-x-1/2">
+                <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
+                    <div class="flex items-center space-x-8">
+                        <a href="#inicio"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Inicio</a>
+                        <a href="#servicios"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Servicios</a>
+                        <a href="#productos"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Productos</a>
+                        <a href="#valoranos"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">Valoranos</a>
+                        <a href="#app"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium">App</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de menú hamburguesa para móvil -->
+            <div class="relative md:hidden">
+                <button id="menu-toggle" class="text-white p-2">
+                    <img src="../../assets/burguer.svg" alt="Menu" class="w-6 h-6">
+                </button>
+
+                <!-- Menú móvil desplegable -->
+                <div id="mobile-menu"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
+                    <a href="#"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
+                    <a href="./pages/servicios.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
+                    <a href="./pages/productos.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
+                    <a href="#valoranos"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Contacto</a>
+                    <hr class="my-2">
+                    <div class="flex items-center justify-evenly space-x-4">
+                        <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2">
+                            <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-7 h-7 rounded-full">
+                            <h1 class="text-white font-medium">Tomás Iezzi</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2 max-sm:hidden">
+                <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
+                <h1 class="text-white font-medium max-lg:hidden">Tomás Iezzi</h1>
+            </div>
+        </div>
+    </nav>
+
+    <main class="px-8 py-4 mt-40 mx-32 max-md:mx-auto">
+        <h1 class="text-5xl font-medium mb-10 max-xl:text-4xl">Perfil</h1>
+        <div class="grid grid-cols-2 max-md:grid-cols-1 gap-8 mb-8">
+            <div class="bg-sky-200 rounded-2xl border-2 border-yellow-300 p-6 flex flex-col items-center">
+                <h2 class="text-3xl font-medium mb-1">Martín Rodriguez</h2>
+                <span class="text-sm mb-4">Usuario</span>
+                <img src="../../assets/Ellipse 10.png" class="w-64 h-64 rounded-full object-cover mt-10" alt="Foto de perfil">
+            </div>
+            <div class="bg-sky-200 rounded-2xl border-2 border-yellow-300 p-6">
+                <h2 class="text-3xl font-medium mb-8">Datos</h2>
+                <div class="grid grid-cols-2 gap-y-16 mb-6">
+                    <span>Nombre</span>
+                    <span>Apellido</span>
+                    <span>Dirección</span>
+                    <span>Teléfono</span>
+                    <span>Email</span>
+                    <span>Plan Actual</span>
+                </div>
+                <div class="flex flex-row items-end justify-end gap-4 mt-12">
+                    <button class="bg-lime-200 font-semibold px-4 py-2 rounded-xl">Editar datos</button>
+                    <button class="bg-red-500 font-semibold px-4 py-2 rounded-xl">Cerrar sesión</button>
+                </div>
+            </div>
+            <div class="bg-sky-200 rounded-2xl border-2 border-yellow-200 p-6 mb-8 col-span-2">
+                <h2 class="text-xl font-bold mb-4">Información de la Mascota</h2>
+                <div class="flex justify-center">
+                    <button class="bg-cyan-800 text-white px-16 py-6 rounded-xl text-xl font-semibold">Registrar Mascota</button>
+                </div>
+                <div class="grid grid-cols-1">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
