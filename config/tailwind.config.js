@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '321px',
+        'max-xs': {'max': '321px'},
+      }
     }
   },
   plugins: [],

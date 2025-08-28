@@ -230,4 +230,86 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Reserva confirmada:', { servicio, veterinario, fecha, hora });
         }
     });
-});
+
+    // Funciones del control del calendario
+    const calendarControl = {
+        // Inicializa el calendario
+        init: function () {
+            this.attachEvents();
+            this.plotDates();
+        },
+        plotDates: function () {
+            document.querySelector(".calendar .calendar-body").innerHTML = "";
+            calendarControl.plotDayNames();
+            calendarControl.displayMonth();
+            calendarControl.displayYear();
+            let count = 1;
+            let prevDateCount = 0;
+
+            calendarControl.prevMonthLastDate = calendarControl.getPreviousMonthLastDate();
+            let prevMonthDatesArray = [];
+            let calendarDays = calendarControl.daysInMonth(
+                calendar.getMonth() + 1,
+                calendar.getFullYear()
+            );
+            // dates of current month
+            for (let i = 1; i < calendarDays; i++) {
+                if (i < calendarControl.firstDayNumber()) {
+                    prevDateCount += 1;
+                    document.querySelector(
+                        ".calendar .calendar-body"
+                    ).innerHTML += `<div class="prev-dates"></div>`;
+                    prevMonthDatesArray.push(calendarControl.prevMonthLastDate--);
+                } else {
+                    // Calcular el día de la semana (0=Domingo, 1=Lunes, ..., 6=Sábado)
+                    let dateObj = new Date(calendar.getFullYear(), calendar.getMonth(), count);
+                    let dayOfWeek = dateObj.getDay();
+                    if (dayOfWeek === 0) { // Domingo
+                        document.querySelector(
+                            ".calendar .calendar-body"
+                        ).innerHTML += `<div class="number-item disabled" data-num=${count}><span class="dateNumber">${count++}</span></div>`;
+                    } else {
+                        document.querySelector(
+                            ".calendar .calendar-body"
+                        ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
+                    }
+                }
+            }
+            //remaining dates after month dates
+            for (let j = 0; j < prevDateCount + 1; j++) {
+                document.querySelector(
+                    ".calendar .calendar-body"
+                ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
+            }
+            calendarControl.highlightToday();
+            calendarControl.plotPrevMonthDates(prevMonthDatesArray);
+            calendarControl.plotNextMonthDates();
+        },
+        attachEvents: function () {
+            let prevBtn = document.querySelector(".calendar .calendar-prev a");
+            let nextBtn = document.querySelector(".calendar .calendar-next a");
+            let todayDate = document.querySelector(".calendar .calendar-today-date");
+            let dateNumber = document.querySelectorAll(".calendar .dateNumber");
+            prevBtn.addEventListener(
+                "click",
+                calendarControl.navigateToPreviousMonth
+            );
+            nextBtn.addEventListener("click", calendarControl.navigateToNextMonth);
+            todayDate.addEventListener(
+                "click",
+                calendarControl.navigateToCurrentMonth
+            );
+            for (var i = 0; i < dateNumber.length; i++) {
+                // Solo agregar evento si el padre no tiene la clase 'disabled'
+                if (!dateNumber[i].parentElement.classList.contains('disabled')) {
+                    dateNumber[i].addEventListener(
+                        "click",
+                        calendarControl.selectDate,
+                        false
+                    );
+                }
+            }
+        }
+    };
+
+})

@@ -23,7 +23,7 @@
             </div>
 
             <!-- Menú central -->
-            <div class="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
+            <div class="max-md:hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
                     <div class="flex items-center space-x-8">
                         <a href="../index.html"
@@ -50,7 +50,7 @@
                 <!-- Menú móvil desplegable -->
                 <div id="mobile-menu"
                     class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
-                    <a href="#"
+                    <a href="../index.html "
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
                     <a href="./pages/servicios.html"
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
@@ -91,7 +91,7 @@
                 <input id="search" type="text" placeholder="Buscar producto..."
                     class="rounded-lg border border-vet-light px-3 py-2 text-sm text-vet-dark focus:outline-none focus:ring-2 focus:ring-vet-blue" />
                 <select id="category"
-                    class="rounded-lg border border-vet-light px-3 py-2 text-sm text-vet-dark focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                    class="rounded-lg border border-vet-light px-3 py-2 text-sm text-vet-dark focus:outline-none focus:ring-2 focus:ring-vet-blue max-xs:w-22">
                     <option value="">Todas</option>
                     <option value="comida">Comida</option>
                     <option value="accesorios">Accesorios</option>
@@ -150,20 +150,80 @@
         window.addEventListener('DOMContentLoaded', renderProducts);
     </script>
 
-    <!-- Footer compacto - ancho completo -->
-    <footer class="bg-vet-taupe py-16 w-full">
-        <div class="w-full px-6">
-            <div class="max-w-6xl mx-auto text-center">
-                <div class="text-white">
-                    <h3 class="text-2xl font-bold mb-4">El Buen Amigo</h3>
-                    <p class="text-[#ede7e3]/80 mb-8 text-lg">
-                        Cuidando a tus mejores amigos desde 2008
-                    </p>
-                    <div class="flex justify-center space-x-8">
-                        <a href="#" class="text-vet-cream/80 hover:text-white transition-colors text-lg">Facebook</a>
-                        <a href="#" class="text-vet-cream/80 hover:text-white transition-colors text-lg">Instagram</a>
-                        <a href="#" class="text-vet-cream/80 hover:text-white transition-colors text-lg">WhatsApp</a>
+    <!-- Footer con información de contacto -->
+    <footer class="bg-vet-taupe py-12 sm:py-16 w-full">
+        <div class="w-full px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-white">
+
+                    <!-- Información principal -->
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-vet-cream">El Buen Amigo</h3>
+                        <p class="text-sm sm:text-base text-vet-cream/80 mb-4 sm:mb-6 leading-relaxed">
+                            Veterinaria de confianza cuidando a tus mejores amigos desde 2008
+                        </p>
+                        <div class="text-xs sm:text-sm text-vet-cream/70">
+                            <p>Lun - Vie: 8:00 AM - 8:00 PM</p>
+                            <p>Sábados: 9:00 AM - 6:00 PM</p>
+                            <p>Emergencias 24/7</p>
+                        </div>
                     </div>
+
+                    <!-- Contacto -->
+                    <div class="text-center md:text-left">
+                        <h4 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-vet-cream">Contacto</h4>
+                        <div class="space-y-2 sm:space-y-3">
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-phone text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">(011) 4567-8901</span>
+                            </div>
+
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-envelope text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">info@elbuenamigo.com</span>
+                            </div>
+
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-map-marker-alt text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">Av. Corrientes 1234, CABA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redes sociales y emergencias -->
+                    <div class="text-center md:text-left">
+                        <h4 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-vet-cream">Síguenos</h4>
+                        <div class="flex justify-center md:justify-start space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-facebook-f text-lg sm:text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-instagram text-lg sm:text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
+                            </a>
+                        </div>
+
+                        <!-- Botón de emergencia -->
+                        <div class="bg-red-600/20 border border-red-500/30 rounded-2xl p-3 sm:p-4">
+                            <p class="text-red-200 font-semibold text-sm sm:text-base mb-2">Emergencias 24/7</p>
+                            <a href="tel:+5491123456789"
+                                class="bg-red-600 text-white hover:bg-red-900 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-colors duration-300 inline-block w-full sm:w-auto">
+                                Llamar Ahora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-vet-cream/20 text-center">
+                    <p class="text-xs sm:text-sm text-vet-cream/60">
+                        © 2025 Veterinaria El Buen Amigo. Todos los derechos reservados.
+                    </p>
                 </div>
             </div>
         </div>
