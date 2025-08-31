@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro - El Buen Amigo</title>
+  <link rel="stylesheet" href="../../dist/output.css">
+</head>
+
+<body class="min-h-screen bg-white">
+  <main class="min-h-screen flex flex-col md:flex-row relative">
+
+    <!-- IZQUIERDA: logo -->
+    <section class="flex-1 flex items-center justify-center bg-[#1A6D77]">
+      <img src="../../assets/Logo.png" alt="Logo El Buen Amigo" class="w-[68%] max-w-[520px] md:max-w-[640px] lg:max-w-[720px] h-auto" />
+    </section>
+
+    <!-- DERECHA: formulario -->
+    <section class="flex-1 flex flex-col items-center justify-start md:justify-center bg-white">
+      <div class="w-full max-w-[720px] px-5 sm:px-8 pt-10 md:pt-0">
+        
+        <!-- perro+gato arriba de la tarjeta -->
+        <div class="w-full flex justify-center">
+          <img src="../../assets/perrigato.png" alt="Perro y gato" class="w-16 sm:w-20 -mb-2 select-none" />
+        </div>
+
+        <!-- Tarjeta -->
+        <div class="bg-[#BFA58D]/95 rounded-2xl shadow-[0_12px_24px_rgba(0,0,0,0.18)] px-5 py-6 sm:px-8 sm:py-8">
+          <form action="../php/registro.php" method="post" class="flex flex-col gap-4 md:gap-6">
+            <input 
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              class="h-12 sm:h-14 px-4 rounded-xl shadow bg-vet-cream placeholder-black/80 font-semibold focus:outline-none">
+            <input 
+              type="date"
+              name="cumpleanos"
+              placeholder="Cumpleaños"
+              class="h-12 sm:h-14 px-4 rounded-xl shadow bg-vet-cream placeholder-black/80 font-semibold focus:outline-none">
+            <input 
+              type="number"
+              name="edad"
+              placeholder="Edad"
+              min="0"
+              class="h-12 sm:h-14 px-4 rounded-xl shadow bg-vet-cream placeholder-black/80 font-semibold focus:outline-none">
+            <input 
+              type="text"
+              name="raza"
+              placeholder="Raza"
+              class="h-12 sm:h-14 px-4 rounded-xl shadow bg-vet-cream placeholder-black/80 font-semibold focus:outline-none">
+            <input 
+              type="text"
+              name="especie"
+              placeholder="Especie"
+              class="h-12 sm:h-14 px-4 rounded-xl shadow bg-vet-cream placeholder-black/80 font-semibold focus:outline-none">
+
+            <div class="md:col-span-2 flex justify-center mt-2">
+              <button type="submit"
+                class="px-6 sm:px-8 h-11 sm:h-12 rounded-full font-semibold bg-[#FFB300] hover:bg-[#ffc233] active:scale-[.99] transition shadow">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Enlace a login (FUERA de la tarjeta) -->
+        <p class="text-center text-sm sm:text-base mt-5">
+          Si tienes cuenta
+          <a href="login.html" class="text-[#FFB300] font-semibold hover:underline">Inicia Sesión</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Botón cerrar (X) arriba a la derecha -->
+    <a href="./perfil.html" class="absolute top-12 right-12 text-red-600 hover:text-vet-orange text-3xl font-bold transition" title="Cerrar">&times;</a>
+  </main>
+</body>
+</html>
