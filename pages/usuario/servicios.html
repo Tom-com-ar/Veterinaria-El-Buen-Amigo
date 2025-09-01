@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Servicios</title>
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script src="../../js/menu.js" defer></script>
+    <script src="../../js/usuarios/servicios.js" defer></script>
+    <style>
+        /* Estilos específicos para el calendario responsive */
+        .flatpickr-calendar-responsive {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 12px !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        }
+        
+        .flatpickr-calendar-responsive .flatpickr-month {
+            background: #f8fafc !important;
+            border-radius: 12px 12px 0 0 !important;
+            border-bottom: 1px solid #e5e7eb !important;
+        }
+        
+        .flatpickr-calendar-responsive .flatpickr-day {
+            border-radius: 8px !important;
+            margin: 1px !important;
+        }
+        
+        .flatpickr-calendar-responsive .flatpickr-day:hover {
+            background: #f97316 !important;
+            color: white !important;
+        }
+        
+        .flatpickr-calendar-responsive .flatpickr-day.selected {
+            background: #f97316 !important;
+            border-color: #f97316 !important;
+        }
+        
+        .flatpickr-calendar-responsive .flatpickr-day.today {
+            border: 2px solid #f97316 !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Responsive para móvil */
+        @media (max-width: 768px) {
+            .flatpickr-calendar-responsive {
+                width: 280px !important;
+                font-size: 14px !important;
+            }
+            
+            .flatpickr-calendar-responsive .flatpickr-day {
+                height: 32px !important;
+                line-height: 32px !important;
+                width: 32px !important;
+            }
+        }
+        
+        /* Posicionamiento mejorado en móvil */
+        @media (max-width: 480px) {
+            .flatpickr-calendar {
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                margin-top: 8px !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-vet-cream min-h-screen">
+    <nav class="nav-light static top-0 left-0 right-0 z-50 px-6 py-4">
+        <div class="max-w-full mx-auto flex items-center justify-between">
+            <!-- Logo compacto -->
+            <div class="flex items-center">
+                <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo"
+                    class="w-24 h-24 object-contain transition-all duration-300">
+                <span
+                    class="text-white text-xl font-bold drop-shadow-lg transition-all duration-300 mb-3  max-lg:hidden">Veterinaria
+                    El Buen Amigo</span>
+            </div>
+
+            <!-- Menú central -->
+            <div class="max-md:hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
+                <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
+                    <div class="flex items-center space-x-8">
+                        <a href="../home.html"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Inicio</a>
+                        <a href="..#servicios"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Servicios</a>
+                        <a href="#productos"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Productos</a>
+                        <a href="../index.html#valoranos"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Valoranos</a>
+                        <a href="../index.html#app"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">App</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de menú hamburguesa para móvil -->
+            <div class="relative md:hidden">
+                <button id="menu-toggle" class="text-white p-2">
+                    <img src="../assets/burguer.svg" alt="Menu" class="w-6 h-6">
+                </button>
+
+                <!-- Menú móvil desplegable -->
+                <div id="mobile-menu"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
+                    <a href="./../home.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
+                    <a href="./pages/servicios.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
+                    <a href="./pages/productos.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
+                    <a href="#valoranos"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Contacto</a>
+                    <hr class="my-2">
+                    <div class="flex items-center justify-evenly space-x-4">
+                        <a href="./pages/login.html"
+                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
+                            Login
+                        </a>
+                        <a href="./pages/registro.html"
+                            class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
+                            Registro
+                        </a>
+                    </div>
+                    <!-- User Info Logeado 
+                    <div class="flex items-center justify-evenly space-x-4">
+                        <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2">
+                            <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-7 h-7 rounded-full">
+                            <h1 class="text-white font-medium">Tomás Iezzi</h1>
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4 max-md:hidden">
+                <a href="../pages/login.html"
+                    class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
+                    Login
+                </a>
+                <a href="../pages/registro.html"
+                    class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
+                    Registro
+                </a>
+            </div>
+            
+            <!-- User Info Logeado 
+            <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2 max-sm:hidden">
+                <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
+                <h1 class="text-white font-medium max-lg:hidden">Tomás Iezzi</h1>
+                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+            </div>-->
+        </div>
+    </nav>
+    <main class="px-3 md:px-4 py-6 md:py-8 max-w-6xl mx-auto">
+        <h1 class="text-xl sm:text-2xl md:text-4xl font-bold text-center text-vet-dark mb-6 md:mb-8">Reserva tu Servicio</h1>
+
+        <!-- Indicador de pasos -->
+        <div class="mb-6 md:mb-8">
+            <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 md:gap-8">
+                <div id="step-1" class="step-indicator flex items-center space-x-2 opacity-100 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-vet-orange text-white flex items-center justify-center font-semibold text-sm transition-all duration-300">1</div>
+                    <span class="step-text font-semibold text-gray-800 text-xs sm:text-sm md:text-base transition-all duration-300">Mascota</span>
+                </div>
+                <div class="hidden md:block w-8 h-0.5 bg-gray-300"></div>
+                <div id="step-2" class="step-indicator flex items-center space-x-2 opacity-50 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold text-sm transition-all duration-300">2</div>
+                    <span class="step-text font-medium text-gray-500 text-xs sm:text-sm md:text-base transition-all duration-300">Sucursal</span>
+                </div>
+                <div class="hidden md:block w-8 h-0.5 bg-gray-300"></div>
+                <div id="step-3" class="step-indicator flex items-center space-x-2 opacity-50 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold text-sm transition-all duration-300">3</div>
+                    <span class="step-text font-medium text-gray-500 text-xs sm:text-sm md:text-base transition-all duration-300">Servicio</span>
+                </div>
+                <div class="hidden md:block w-8 h-0.5 bg-gray-300"></div>
+                <div id="step-4" class="step-indicator flex items-center space-x-2 opacity-50 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold text-sm transition-all duration-300">4</div>
+                    <span class="step-text font-medium text-gray-500 text-xs sm:text-sm md:text-base transition-all duration-300">Veterinario</span>
+                </div>
+                <div class="hidden md:block w-8 h-0.5 bg-gray-300"></div>
+                <div id="step-5" class="step-indicator flex items-center space-x-2 opacity-50 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold text-sm transition-all duration-300">5</div>
+                    <span class="step-text font-medium text-gray-500 text-xs sm:text-sm md:text-base transition-all duration-300">Día</span>
+                </div>
+                <div class="hidden md:block w-8 h-0.5 bg-gray-300"></div>
+                <div id="step-6" class="step-indicator flex items-center space-x-2 opacity-50 transition-all duration-300">
+                    <div class="step-number w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold text-sm transition-all duration-300">6</div>
+                    <span class="step-text font-medium text-gray-500 text-xs sm:text-sm md:text-base transition-all duration-300">Hora</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario por pasos -->
+        <div class="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8">
+            <!-- Paso 1: Seleccionar Mascota -->
+            <div id="paso-1" class="step-content">
+                <div class="text-center mb-4 md:mb-6">
+                    <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-vet-orange rounded-full mb-3 md:mb-4">
+                        <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-vet-dark mb-2">Selecciona tu Mascota</h2>
+                    <p class="text-sm md:text-base text-gray-600">Elige la mascota para la cual deseas reservar el turno</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+                    <div class="mascota-option p-3 md:p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-mascota="1">
+                        <div class="text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-vet-blue rounded-full mx-auto mb-2 md:mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 4L13.5 5.5C12.1 4.9 10.9 4.9 9.5 5.5L8 4L2 7V9C2 10.1 2.9 11 4 11S6 10.1 6 9V8.5L8.5 10C8.8 10.3 9.2 10.4 9.5 10.4S10.2 10.3 10.5 10L13 8.5V9C13 10.1 13.9 11 15 11S17 10.1 17 9V8.5L19.5 10C19.8 10.3 20.2 10.4 20.5 10.4S21.2 10.3 21.5 10L22 9.5V9C22 8.4 21.6 8 21 8V9Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm md:text-base">Max</h3>
+                            <p class="text-xs md:text-sm text-gray-500">Golden Retriever</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mascota-option p-3 md:p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-mascota="2">
+                        <div class="text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-vet-blue rounded-full mx-auto mb-2 md:mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8C8.69 8 6 10.69 6 14S8.69 20 12 20 18 17.31 18 14 15.31 8 12 8ZM12 18C9.79 18 8 16.21 8 14S9.79 10 12 10 16 11.79 16 14 14.21 18 12 18ZM12 2L13.09 8.26L20 4L15.74 10.91L22 12L15.74 13.09L20 20L13.09 15.74L12 22L10.91 15.74L4 20L8.26 13.09L2 12L8.26 10.91L4 4L10.91 8.26L12 2Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm md:text-base">Luna</h3>
+                            <p class="text-xs md:text-sm text-gray-500">Gato Persa</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón para agregar mascota -->
+                    <div class="mascota-option p-3 md:p-4 border-2 border-dashed border-gray-300 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-mascota="new">
+                        <div class="text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gray-200 rounded-full mx-auto mb-2 md:mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-gray-600 text-sm md:text-base">Agregar Mascota</h3>
+                            <p class="text-xs md:text-sm text-gray-400">Nueva mascota</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 2: Seleccionar Sucursal -->
+            <div id="paso-2" class="step-content hidden">
+                <div class="text-center mb-4 md:mb-6">
+                    <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-vet-orange rounded-full mb-3 md:mb-4">
+                        <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17M2 12L12 17L22 12"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-vet-dark mb-2">Selecciona la Sucursal</h2>
+                    <p class="text-sm md:text-base text-gray-600">Elige la sucursal más conveniente para ti</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3 md:gap-4">
+                    <div class="sucursal-option p-4 md:p-6 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-sucursal="centro">
+                        <div class="flex items-start space-x-3 md:space-x-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-vet-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-vet-dark mb-1 md:mb-2 text-sm md:text-base">Sucursal Centro</h3>
+                                <p class="text-xs md:text-sm text-gray-600 mb-1 md:mb-2">Av. Corrientes 1234, CABA</p>
+                                <p class="text-xs text-gray-500">Lun-Vie: 8:00-20:00 | Sáb: 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sucursal-option p-4 md:p-6 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-sucursal="palermo">
+                        <div class="flex items-start space-x-3 md:space-x-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-vet-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-vet-dark mb-1 md:mb-2 text-sm md:text-base">Sucursal Palermo</h3>
+                                <p class="text-xs md:text-sm text-gray-600 mb-1 md:mb-2">Av. Santa Fe 2100, CABA</p>
+                                <p class="text-xs text-gray-500">Lun-Vie: 8:00-20:00 | Sáb: 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 3: Seleccionar Servicio -->
+            <div id="paso-3" class="step-content hidden">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-vet-orange rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM17 12H7V10H17V12ZM13 16H7V14H13V16ZM17 8H7V6H17V8Z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-vet-dark mb-2">Selecciona el Servicio</h2>
+                    <p class="text-gray-600">¿Qué necesita tu mascota?</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="servicio-option p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-servicio="consulta">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-vet-blue rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm">Consulta General</h3>
+                        </div>
+                    </div>
+
+                    <div class="servicio-option p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-servicio="vacuna">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-vet-blue rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M11 2V22H13V18H17V16H13V13H17V11H13V8H17V6H13V2H11Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm">Vacunación</h3>
+                        </div>
+                    </div>
+
+                    <div class="servicio-option p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-servicio="cirugia">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-vet-blue rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9ZM7 6H17V19H7V6ZM9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm">Cirugía</h3>
+                        </div>
+                    </div>
+
+                    <div class="servicio-option p-4 border-2 border-gray-200 rounded-xl hover:border-vet-orange hover:bg-vet-cream/50 cursor-pointer transition-all duration-300" data-servicio="baño">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-vet-blue rounded-lg mx-auto mb-3 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 17C9 17.55 9.45 18 10 18S11 17.55 11 17 10.55 16 10 16 9 16.45 9 17ZM13 17C13 17.55 13.45 18 14 18S15 17.55 15 17 14.55 16 14 16 13 16.45 13 17Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-vet-dark text-sm">Baño y Aseo</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campo específico para vacunas -->
+                <div id="vacuna-fields" class="hidden">
+                    <div class="bg-vet-cream/50 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-vet-dark mb-4">Selecciona el tipo de vacuna</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="vacuna-option p-3 border-2 border-gray-200 rounded-lg hover:border-vet-orange hover:bg-white cursor-pointer transition-all duration-300" data-vacuna="rabia">
+                                <div class="text-center">
+                                    <h4 class="font-medium text-vet-dark">Rabia</h4>
+                                </div>
+                            </div>
+                            <div class="vacuna-option p-3 border-2 border-gray-200 rounded-lg hover:border-vet-orange hover:bg-white cursor-pointer transition-all duration-300" data-vacuna="parvovirus">
+                                <div class="text-center">
+                                    <h4 class="font-medium text-vet-dark">Parvovirus</h4>
+                                </div>
+                            </div>
+                            <div class="vacuna-option p-3 border-2 border-gray-200 rounded-lg hover:border-vet-orange hover:bg-white cursor-pointer transition-all duration-300" data-vacuna="moquillo">
+                                <div class="text-center">
+                                    <h4 class="font-medium text-vet-dark">Moquillo</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 4: Seleccionar Veterinario -->
+            <div id="paso-4" class="step-content hidden">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-vet-orange rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 4L13.5 5.5C12.1 4.9 10.9 4.9 9.5 5.5L8 4L2 7V9C2 10.1 2.9 11 4 11S6 10.1 6 9V8.5L8.5 10C8.8 10.3 9.2 10.4 9.5 10.4S10.2 10.3 10.5 10L13 8.5V9C13 10.1 13.9 11 15 11S17 10.1 17 9V8.5L19.5 10C19.8 10.3 20.2 10.4 20.5 10.4S21.2 10.3 21.5 10L22 9.5V9C22 8.4 21.6 8 21 8V9Z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-vet-dark mb-2">Selecciona el Veterinario</h2>
+                    <p class="text-gray-600">Veterinarios disponibles para el servicio seleccionado</p>
+                </div>
+
+                <div id="veterinarios" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Los veterinarios se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Paso 5: Seleccionar Día -->
+            <div id="paso-5" class="step-content hidden">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-vet-orange rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H18V1H16V3H8V1H6V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM19 19H5V8H19V19ZM7 10H12V15H7V10Z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-vet-dark mb-2">Selecciona el Día</h2>
+                    <p class="text-gray-600">Días disponibles para tu veterinario</p>
+                </div>
+
+                <div class="max-w-sm mx-auto">
+                    <div class="relative">
+                        <input id="fecha-input" type="text" readonly placeholder="Haga clic para seleccionar fecha" 
+                               class="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl bg-white text-vet-dark placeholder-gray-400 focus:border-vet-orange focus:outline-none cursor-pointer transition-all duration-200 hover:border-gray-300 hover:shadow-md">
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none transition-colors duration-200">
+                            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H18V1H16V3H8V1H6V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM19 19H5V8H19V19ZM7 10H12V15H7V10Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <input id="calendario" type="text" class="sr-only" />
+                </div>
+            </div>
+
+            <!-- Paso 6: Seleccionar Hora -->
+            <div id="paso-6" class="step-content hidden">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-vet-orange rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-vet-dark mb-2">Selecciona la Hora</h2>
+                    <p class="text-gray-600">Horarios disponibles para el día seleccionado</p>
+                </div>
+
+                <div id="horarios" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
+                    <!-- Los horarios se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
+                <button id="btn-anterior" class="px-4 md:px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base" disabled>
+                    <span class="hidden sm:inline">Anterior</span>
+                    <span class="sm:hidden">←</span>
+                </button>
+                <button id="btn-siguiente" class="px-4 md:px-6 py-3 bg-vet-orange text-white rounded-xl hover:bg-vet-orange/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base" disabled>
+                    <span class="hidden sm:inline">Siguiente</span>
+                    <span class="sm:hidden">→</span>
+                </button>
+                <button id="confirmar-reserva" class="px-4 md:px-8 py-3 bg-vet-blue text-white rounded-xl hover:bg-vet-blue/90 transition-colors hidden text-sm md:text-base">
+                    <span class="hidden sm:inline">Confirmar Reserva</span>
+                    <span class="sm:hidden">Confirmar</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer con información de contacto -->
+    <footer class="bg-vet-taupe py-12 sm:py-16 w-full">
+        <div class="w-full px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-white">
+
+                    <!-- Información principal -->
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-vet-cream">El Buen Amigo</h3>
+                        <p class="text-sm sm:text-base text-vet-cream/80 mb-4 sm:mb-6 leading-relaxed">
+                            Veterinaria de confianza cuidando a tus mejores amigos desde 2008
+                        </p>
+                        <div class="text-xs sm:text-sm text-vet-cream/70">
+                            <p>Lun - Vie: 8:00 AM - 8:00 PM</p>
+                            <p>Sábados: 9:00 AM - 6:00 PM</p>
+                            <p>Emergencias 24/7</p>
+                        </div>
+                    </div>
+
+                    <!-- Contacto -->
+                    <div class="text-center md:text-left">
+                        <h4 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-vet-cream">Contacto</h4>
+                        <div class="space-y-2 sm:space-y-3">
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-phone text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">(011) 4567-8901</span>
+                            </div>
+
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-envelope text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">info@elbuenamigo.com</span>
+                            </div>
+
+                            <div class="flex items-center justify-center md:justify-start space-x-3">
+                                <i class="fas fa-map-marker-alt text-base sm:text-lg text-vet-orange"></i>
+                                <span class="text-sm sm:text-base text-vet-cream/90">Av. Corrientes 1234, CABA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redes sociales y emergencias -->
+                    <div class="text-center md:text-left">
+                        <h4 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-vet-cream">Síguenos</h4>
+                        <div class="flex justify-center md:justify-start space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-facebook-f text-lg sm:text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-instagram text-lg sm:text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-vet-orange/20 p-3 sm:p-4 rounded-full text-vet-cream hover:bg-vet-orange hover:text-white transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14">
+                                <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
+                            </a>
+                        </div>
+
+                        <!-- Botón de emergencia -->
+                        <div class="bg-red-600/20 border border-red-500/30 rounded-2xl p-3 sm:p-4">
+                            <p class="text-red-200 font-semibold text-sm sm:text-base mb-2">Emergencias 24/7</p>
+                            <a href="tel:+5491123456789"
+                                class="bg-red-600 text-white hover:bg-red-900 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-colors duration-300 inline-block w-full sm:w-auto">
+                                Llamar Ahora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-vet-cream/20 text-center">
+                    <p class="text-xs sm:text-sm text-vet-cream/60">
+                        © 2025 Veterinaria El Buen Amigo. Todos los derechos reservados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
