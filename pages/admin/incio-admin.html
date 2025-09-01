@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Inicio - El Buen Amigo</title>
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-vet-blue text-white shadow-lg fixed top-0 left-64 right-0 max-lg:left-20 max-md:left-0 z-30 h-20">
+        <div class="px-6 py-4 h-full">
+            <div class="flex items-center justify-between h-full">
+                <!-- Lado izquierdo: INICIO y botón hamburguesa móvil -->
+                <div class="flex items-center space-x-4">
+                    <!-- Botón hamburguesa solo en móvil -->
+                    <button id="mobile-menu-toggle-header" class="md:hidden text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-2xl font-bold text-white max-md:text-xl">INICIO</h1>
+                </div>
+                
+                <!-- Lado derecho: Búsqueda y Usuario -->
+                <div class="flex items-center space-x-4">
+                    <!-- Barra de búsqueda -->
+                    <div class="relative max-md:hidden">
+                        <input type="text" placeholder="Buscar herramientas" 
+                               class="px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange w-64">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <i class="fas fa-search text-gray-500 text-sm"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Usuario -->
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-vet-blue text-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-vet-dark text-white shadow-xl max-lg:w-20 max-md:hidden fixed top-0 bottom-0 left-0 z-40">
+            <!-- Header del sidebar con logo y nombre -->
+            <div class="bg-vet-darkblue  h-20 flex items-center">
+                <div class="flex items-center space-x-3 max-lg:justify-center">
+                    <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo" class="w-20 h-20 object-contain max-lg:w-14 max-lg:h-14">
+                    <div class="max-lg:hidden text-center">
+                        <h2 class="text-base font-light text-white leading-tight">El Buen Amigo</h2>
+                        <p class="text-vet-orange text-sm font-light leading-tight">Veterinaria</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="mt-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-building text-xl max-lg:mr-0 mr-3"></i>
+                            <span class="max-lg:hidden">Sucursales</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-user-md text-xl max-lg:mr-0 mr-3"></i>
+                            <span class="max-lg:hidden">Veterinarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-user-tie text-xl max-lg:mr-0 mr-3"></i>
+                            <span class="max-lg:hidden">Recepcionistas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-users text-xl max-lg:mr-0 mr-3"></i>
+                            <span class="max-lg:hidden">Clientes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-box text-xl max-lg:mr-0 mr-3"></i>
+                            <span class="max-lg:hidden">Productos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="flex-1 p-6 ml-64 max-lg:ml-20 max-md:ml-0 mt-30 pt-4">
+            <div class="flex gap-6 max-xl:flex-col">
+                <!-- Área de herramientas -->
+                <div class="flex-1">
+                    <h2 class="text-3xl font-light text-black mb-8 max-md:text-2xl">Herramientas</h2>
+                    
+                    <!-- Sucursales Section -->
+                    <div class="mb-8">
+                        <div class="bg-white rounded-md shadow-md border border-gray-200">
+                            <!-- Header de la tarjeta -->
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                                <h3 class="text-xl font-light text-black">Sucursales</h3>
+                                <button class="text-black hover:text-vet-blue card-toggle">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <!-- Contenido de acciones -->
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-plus text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">agregar</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-edit text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">modificar</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-tools text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">servicios</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-user-shield text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">administradores</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-cash-register text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">caja registradora</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-chart-line text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">estadísticas</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Veterinarios Section -->
+                    <div class="mb-8">
+                        <div class="bg-white rounded-md shadow-md border border-gray-200">
+                            <!-- Header de la tarjeta -->
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                                <h3 class="text-xl font-light text-black">Veterinarios</h3>
+                                <button class="text-black hover:text-vet-blue card-toggle">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <!-- Contenido de acciones -->
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-plus text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">agregar</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-edit text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">modificar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recepcionistas Section -->
+                    <div class="mb-8">
+                        <div class="bg-white rounded-md shadow-md border border-gray-200">
+                            <!-- Header de la tarjeta -->
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                                <h3 class="text-xl font-light text-black">Recepcionistas</h3>
+                                <button class="text-black hover:text-vet-blue card-toggle">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <!-- Contenido de acciones -->
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-plus text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">agregar</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-edit text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">modificar</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-eye text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">ver acciones</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Productos Section -->
+                    <div class="mb-8">
+                        <div class="bg-white rounded-md shadow-md border border-gray-200">
+                            <!-- Header de la tarjeta -->
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                                <h3 class="text-xl font-light text-black">Productos</h3>
+                                <button class="text-black hover:text-vet-blue card-toggle">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <!-- Contenido de acciones -->
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-plus text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">agregar producto</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-edit text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">modificar producto</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-chart-bar text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">ajuste de stock</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-truck text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">agregar proveedor</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-user-edit text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">modificar proveedor</span>
+                                    </button>
+                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                        <i class="fas fa-shopping-cart text-vet-orange text-2xl"></i>
+                                        <span class="font-light text-black">compras</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar derecho - Información del perfil -->
+                <div class="w-80 max-xl:w-full">
+                    <div class="bg-white rounded-md shadow-md p-6 border border-gray-200">
+                        <h3 class="text-lg font-light text-black mb-6">Información del perfil</h3>
+                        <div class="space-y-4">
+                            <div class="pb-4 border-b border-gray-300">
+                                <p class="text-sm font-light text-gray-600 mb-1">Nombre de usuario</p>
+                                <p class="text-base font-light text-black">Admin Usuario</p>
+                            </div>
+                            <div class="pb-4 border-b border-gray-300">
+                                <p class="text-sm font-light text-gray-600 mb-1">Email registrado</p>
+                                <p class="text-base font-light text-black">admin@elbuenamigo.com</p>
+                            </div>
+                            <div class="pb-4 border-b border-gray-300">
+                                <p class="text-sm font-light text-gray-600 mb-1">Teléfono</p>
+                                <p class="text-base font-light text-black">+54 11 1234-5678</p>
+                            </div>
+                            <div class="pb-4 border-b border-gray-300">
+                                <p class="text-sm font-light text-gray-600 mb-1">Cuenta creada el</p>
+                                <p class="text-base font-light text-black">15 de Enero, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Menu móvil overlay -->
+    <div id="mobile-menu-overlay" class="hidden md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
+        <div class="fixed left-0 top-0 bottom-0 w-80 bg-vet-dark text-white shadow-xl transform -translate-x-full transition-transform duration-300" id="mobile-sidebar">
+            <div class="bg-vet-darkblue p-4 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo" class="w-12 h-12 object-contain">
+                    <div class="text-center">
+                        <h2 class="text-base font-light text-white leading-tight">El Buen Amigo</h2>
+                        <p class="text-vet-orange text-sm font-light leading-tight">Veterinaria</p>
+                    </div>
+                </div>
+                <button id="close-mobile-menu" class="text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Barra de búsqueda móvil -->
+            <div class="p-4 border-b border-vet-blue">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar herramientas" 
+                           class="w-full px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <i class="fas fa-search text-gray-500 text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <nav class="mt-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-building text-xl mr-3"></i>
+                            <span>Sucursales</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-user-md text-xl mr-3"></i>
+                            <span>Veterinarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-user-tie text-xl mr-3"></i>
+                            <span>Recepcionistas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-users text-xl mr-3"></i>
+                            <span>Clientes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
+                            <i class="fas fa-box text-xl mr-3"></i>
+                            <span>Productos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script src="../../js/admin/admin-dashboard.js"></script>
+</body>
+</html>
