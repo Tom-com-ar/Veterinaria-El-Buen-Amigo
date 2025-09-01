@@ -6,38 +6,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>El Buen Amigo - Veterinaria</title>
   <link href="./dist/output.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="./js/menu.js" defer></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const header = document.querySelector("nav");
+      const navbar = document.getElementById("navbar");
+      const logo = document.getElementById("logo");
+      const logoText = document.getElementById("logo-text");
+      const logoTextMobile = document.getElementById("logo-text-mobile");
+      const hamburgerIcon = document.getElementById("hamburger-icon");
 
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 620) {
-          header.classList.add("nav-light"); // cambia estilo al scrollear
+        const isMobile = window.innerWidth <= 1024; // Incluir tablets
+        
+        if (isMobile) {
+          // Para móviles y tablets - hacer navbar más compacto al scroll pero mantener mismo color
+          if (window.scrollY > 50) {
+            // Hacer navbar más compacto
+            navbar.classList.remove("max-lg:py-2");
+            navbar.classList.add("max-lg:py-1");
+            
+            // Mantener el mismo fondo, solo cambiar opacidad
+            navbar.classList.remove("max-lg:bg-vet-dark/90");
+            navbar.classList.add("max-lg:bg-vet-dark/95");
+            
+            // Logo más pequeño
+            logo.classList.remove("max-lg:w-16", "max-lg:h-16");
+            logo.classList.add("max-lg:w-12", "max-lg:h-12");
+            
+            // Texto más pequeño - desktop
+            if (logoText) {
+              logoText.classList.remove("max-lg:text-lg");
+              logoText.classList.add("max-lg:text-sm");
+            }
+            
+            // Texto más pequeño - mobile
+            if (logoTextMobile) {
+              logoTextMobile.classList.remove("text-sm");
+              logoTextMobile.classList.add("text-xs");
+            }
+            
+            // Icono más pequeño
+            hamburgerIcon.classList.remove("text-lg");
+            hamburgerIcon.classList.add("text-base");
+            
+          } else {
+            // Volver al tamaño original
+            navbar.classList.remove("max-lg:py-1");
+            navbar.classList.add("max-lg:py-2");
+            
+            navbar.classList.remove("max-lg:bg-vet-dark/95");
+            navbar.classList.add("max-lg:bg-vet-dark/90");
+            
+            logo.classList.remove("max-lg:w-12", "max-lg:h-12");
+            logo.classList.add("max-lg:w-16", "max-lg:h-16");
+            
+            if (logoText) {
+              logoText.classList.remove("max-lg:text-sm");
+              logoText.classList.add("max-lg:text-lg");
+            }
+            
+            if (logoTextMobile) {
+              logoTextMobile.classList.remove("text-xs");
+              logoTextMobile.classList.add("text-sm");
+            }
+            
+            hamburgerIcon.classList.remove("text-base");
+            hamburgerIcon.classList.add("text-lg");
+          }
         } else {
-          header.classList.remove("nav-light"); // vuelve al original arriba de todo
+          // Para desktop - comportamiento original
+          if (window.scrollY > 620) {
+            navbar.classList.add("nav-light");
+          } else {
+            navbar.classList.remove("nav-light");
+          }
         }
       });
+
+      // Aplicar estado inicial si ya hay scroll
+      const initialScroll = window.scrollY;
+      const isMobile = window.innerWidth <= 1024; // Incluir tablets
+      
+      if (isMobile && initialScroll > 50) {
+        navbar.classList.remove("max-lg:py-2");
+        navbar.classList.add("max-lg:py-1");
+        navbar.classList.remove("max-lg:bg-vet-dark/90");
+        navbar.classList.add("max-lg:bg-vet-dark/95");
+        logo.classList.remove("max-lg:w-16", "max-lg:h-16");
+        logo.classList.add("max-lg:w-12", "max-lg:h-12");
+        if (logoText) {
+          logoText.classList.remove("max-lg:text-lg");
+          logoText.classList.add("max-lg:text-sm");
+        }
+        if (logoTextMobile) {
+          logoTextMobile.classList.remove("text-sm");
+          logoTextMobile.classList.add("text-xs");
+        }
+        hamburgerIcon.classList.remove("text-lg");
+        hamburgerIcon.classList.add("text-base");
+      } else if (!isMobile && initialScroll > 620) {
+        navbar.classList.add("nav-light");
+      }
     });
   </script>
 </head>
 
 <body class="bg-vet-cream font-sans">
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 max-md:static max-md:bg-vet-dark">
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:px-6 lg:py-4 max-lg:px-4 max-lg:py-2 max-lg:bg-vet-dark/90 max-lg:backdrop-blur-md transition-all duration-300">
     <div class="max-w-full mx-auto flex items-center justify-between">
       <!-- Logo compacto -->
       <div class="flex items-center">
-        <img src="./assets/Logo 4.png" alt="El Buen Amigo Logo"
-          class="w-24 h-24 object-contain transition-all duration-300">
-        <span
-          class="text-white text-xl font-bold drop-shadow-lg transition-all duration-300 mb-3  max-xl:hidden">Veterinaria
-          El Buen Amigo</span>
+        <a href="#inicio" class="flex items-center">
+          <img id="logo" src="./assets/Logo 4.png" alt="El Buen Amigo Logo"
+            class="w-24 h-24 max-lg:w-16 max-lg:h-16 object-contain transition-all duration-300 cursor-pointer hover:scale-105">
+          <span id="logo-text"
+            class="text-white text-xl max-lg:text-lg font-bold drop-shadow-lg transition-all duration-300 mb-3 max-lg:mb-2 max-sm:hidden">Veterinaria
+            El Buen Amigo</span>
+          <span id="logo-text-mobile"
+            class="text-white text-sm font-bold drop-shadow-lg transition-all duration-300 mb-2 hidden max-sm:block">Veterinaria
+            El Buen Amigo</span>
+        </a>
       </div>
 
       <!-- Menú central -->
-      <div class="max-md:hidden items-center absolute left-1/2 transform -translate-x-1/2">
+      <div class="max-lg:hidden items-center absolute left-1/2 transform -translate-x-1/2">
         <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
           <div class="flex items-center space-x-8">
             <a href="#inicio"
@@ -56,9 +150,9 @@
       </div>
 
       <!-- Botón de menú hamburguesa para móvil -->
-      <div class="relative md:hidden">
-        <button id="menu-toggle" class="text-white p-2">
-          <img src="./assets/burguer.svg" alt="Menu" class="w-6 h-6">
+      <div class="relative lg:hidden">
+        <button id="menu-toggle" class="text-white p-1 hover:text-vet-orange transition-colors duration-300">
+          <i id="hamburger-icon" class="fas fa-bars text-lg transition-all duration-300"></i>
         </button>
 
         <!-- Menú móvil desplegable -->
@@ -96,7 +190,7 @@
         </div>
       </div>
 
-      <div class="flex items-center space-x-4 max-md:hidden">
+      <div class="flex items-center space-x-4 max-lg:hidden">
         <a href="./pages/login.html"
           class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
           Login
@@ -118,7 +212,7 @@
     </div>
   </nav>
 
-  <section id="inicio" class="relative h-screen w-full overflow-hidden">
+  <section id="inicio" class="relative h-screen w-full overflow-hidden max-lg:pt-20">
 
     <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline disablePictureInPicture
       controlsList="nodownload nofullscreen noremoteplayback">
