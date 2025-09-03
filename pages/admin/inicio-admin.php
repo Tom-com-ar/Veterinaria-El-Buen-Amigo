@@ -1,3 +1,10 @@
+<?php
+// Incluir la configuración de layout
+include_once '../../components/admin/layout.php';
+
+// Obtener configuración para la página de inicio admin
+$config = get_page_config('admin_dashboard');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,90 +16,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 font-sans">
-    <!-- Header -->
-    <header class="bg-vet-blue text-white shadow-lg fixed top-0 left-64 right-0 max-lg:left-20 max-md:left-0 z-30 h-20">
-        <div class="px-6 py-4 h-full">
-            <div class="flex items-center justify-between h-full">
-                <!-- Lado izquierdo: INICIO y botón hamburguesa móvil -->
-                <div class="flex items-center space-x-4">
-                    <!-- Botón hamburguesa solo en móvil -->
-                    <button id="mobile-menu-toggle-header" class="md:hidden text-white">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                    <h1 class="text-2xl font-bold text-white max-md:text-xl">INICIO</h1>
-                </div>
-                
-                <!-- Lado derecho: Búsqueda y Usuario -->
-                <div class="flex items-center space-x-4">
-                    <!-- Barra de búsqueda -->
-                    <div class="relative max-md:hidden">
-                        <input type="text" placeholder="Buscar herramientas" 
-                               class="px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange w-64">
-                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <i class="fas fa-search text-gray-500 text-sm"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Usuario -->
-                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                        <i class="fas fa-user text-vet-blue text-lg"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php 
+    // Incluir header y sidebar usando la configuración de la página
+    include_admin_layout($config['header'], $config['sidebar']); 
+    ?>
 
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-vet-dark text-white shadow-xl max-lg:w-20 max-md:hidden fixed top-0 bottom-0 left-0 z-40">
-            <!-- Header del sidebar con logo y nombre -->
-            <div class="bg-vet-darkblue  h-20 flex items-center">
-                <div class="flex items-center space-x-3 max-lg:justify-center">
-                    <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo" class="w-20 h-20 object-contain max-lg:w-14 max-lg:h-14">
-                    <div class="max-lg:hidden text-center">
-                        <h2 class="text-base font-light text-white leading-tight">El Buen Amigo</h2>
-                        <p class="text-vet-orange text-sm font-light leading-tight">Veterinaria</p>
-                    </div>
-                </div>
-            </div>
-            <nav class="mt-4">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-building text-xl max-lg:mr-0 mr-3"></i>
-                            <span class="max-lg:hidden">Sucursales</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-user-md text-xl max-lg:mr-0 mr-3"></i>
-                            <span class="max-lg:hidden">Veterinarios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-user-tie text-xl max-lg:mr-0 mr-3"></i>
-                            <span class="max-lg:hidden">Recepcionistas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-users text-xl max-lg:mr-0 mr-3"></i>
-                            <span class="max-lg:hidden">Clientes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-box text-xl max-lg:mr-0 mr-3"></i>
-                            <span class="max-lg:hidden">Productos</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
         <!-- Contenido principal -->
-        <main class="flex-1 p-6 ml-64 max-lg:ml-20 max-md:ml-0 mt-30 pt-4">
+        <main class="flex-1 p-6 ml-64 max-xl:ml-0 mt-30 pt-4">
             <div class="flex gap-6 max-xl:flex-col">
                 <!-- Área de herramientas -->
                 <div class="flex-1">
@@ -267,67 +198,73 @@
         </main>
     </div>
 
-    <!-- Menu móvil overlay -->
-    <div id="mobile-menu-overlay" class="hidden md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
-        <div class="fixed left-0 top-0 bottom-0 w-80 bg-vet-dark text-white shadow-xl transform -translate-x-full transition-transform duration-300" id="mobile-sidebar">
-            <div class="bg-vet-darkblue p-4 h-20 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <img src="../../assets/Logo 4.png" alt="El Buen Amigo Logo" class="w-12 h-12 object-contain">
-                    <div class="text-center">
-                        <h2 class="text-base font-light text-white leading-tight">El Buen Amigo</h2>
-                        <p class="text-vet-orange text-sm font-light leading-tight">Veterinaria</p>
+    <!-- Modal de validación de contraseña -->
+    <div id="password-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40" style="background-color: rgba(107, 114, 128, 0.5);">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Validar Contraseña</h3>
+                <p class="text-sm text-gray-600 mb-4">Por favor ingresa tu contraseña actual para continuar:</p>
+                <form id="password-form">
+                    <div class="mb-4">
+                        <input type="password" id="current-password" placeholder="Contraseña actual" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
                     </div>
-                </div>
-                <button id="close-mobile-menu" class="text-white">
-                    <i class="fas fa-times"></i>
-                </button>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancel-password" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-vet-blue text-white rounded-md hover:bg-vet-blue/90 transition-colors">
+                            Validar
+                        </button>
+                    </div>
+                </form>
             </div>
-            
-            <!-- Barra de búsqueda móvil -->
-            <div class="p-4 border-b border-vet-blue">
-                <div class="relative">
-                    <input type="text" placeholder="Buscar herramientas" 
-                           class="w-full px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange">
-                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        <i class="fas fa-search text-gray-500 text-sm"></i>
-                    </button>
-                </div>
+        </div>
+    </div>
+
+    <!-- Modal de edición de perfil -->
+    <div id="profile-edit-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40" style="background-color: rgba(107, 114, 128, 0.5);">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Editar Perfil</h3>
+                <form id="profile-edit-form">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de Usuario</label>
+                            <input type="text" id="edit-username" value="Admin Usuario" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="edit-email" value="admin@elbuenamigo.com" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                            <input type="tel" id="edit-phone" value="+54 11 1234-5678" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nueva Contraseña (opcional)</label>
+                            <input type="password" id="new-password" placeholder="Dejar en blanco para mantener actual" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="confirm-password" placeholder="Confirmar nueva contraseña" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-blue">
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button type="button" id="cancel-edit" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-vet-blue text-white rounded-md hover:bg-vet-blue/90 transition-colors">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
             </div>
-            
-            <nav class="mt-4">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-building text-xl mr-3"></i>
-                            <span>Sucursales</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-user-md text-xl mr-3"></i>
-                            <span>Veterinarios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-user-tie text-xl mr-3"></i>
-                            <span>Recepcionistas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-users text-xl mr-3"></i>
-                            <span>Clientes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200">
-                            <i class="fas fa-box text-xl mr-3"></i>
-                            <span>Productos</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 

@@ -228,3 +228,106 @@ button {
   border: 1px solid transparent;
   pointer-events: none;
 }
+
+/* Estilos personalizados para submenús del sidebar */
+.submenu {
+    transition: all 0.2s ease-in-out;
+    transform-origin: top;
+    overflow: hidden;
+}
+
+.submenu-toggle .submenu-arrow {
+    transition: transform 0.2s ease-in-out;
+}
+
+.submenu-toggle .submenu-arrow.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Remover espacios innecesarios */
+.submenu li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hover effects para los elementos del sidebar */
+.sidebar-item:hover {
+    background-color: rgba(72, 159, 181, 0.1);
+}
+
+.submenu-item:hover {
+    background-color: rgba(72, 159, 181, 0.2);
+}
+
+/* Asegurar que las clases CSS de colores funcionen correctamente */
+.bg-vet-dark {
+    background-color: #16697A !important;
+}
+
+.bg-vet-darkblue {
+    background-color: #104D59 !important;
+}
+
+.bg-vet-blue {
+    background-color: #489FB5 !important;
+}
+
+.text-vet-orange {
+    color: #FFA62B !important;
+}
+
+/* Estilos específicos para el sidebar */
+aside.bg-vet-dark {
+    background-color: #16697A !important;
+}
+
+aside .bg-vet-darkblue {
+    background-color: #104D59 !important;
+}
+
+/* Asegurar que no haya espaciado extra en los submenús */
+.submenu:not(.hidden) {
+    display: block;
+}
+
+.submenu.hidden {
+    display: none;
+}
+
+/* Estilos para el menú móvil scrolleable */
+#mobile-sidebar {
+    max-height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+#mobile-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+#mobile-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#mobile-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+#mobile-sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Estilos para el overlay del menú móvil */
+#mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(2px) !important;
+}
+
+#mobile-menu-overlay.fixed {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.fixed.inset-0.bg-black {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
