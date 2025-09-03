@@ -42,30 +42,30 @@ $config = get_page_config('admin_dashboard');
                             <!-- Contenido de acciones -->
                             <div class="p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    <a href="sucursales-agregar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-plus text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">agregar</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="sucursales-modificar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-edit text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">modificar</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="sucursales-servicios.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-tools text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">servicios</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="sucursales-administradores.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-user-shield text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">administradores</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="sucursales-caja.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-cash-register text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">caja registradora</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="sucursales-estadisticas.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-chart-line text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">estadísticas</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -84,14 +84,14 @@ $config = get_page_config('admin_dashboard');
                             <!-- Contenido de acciones -->
                             <div class="p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    <a href="veterinarios-agregar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-plus text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">agregar</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="veterinarios-modificar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-edit text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">modificar</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -110,18 +110,18 @@ $config = get_page_config('admin_dashboard');
                             <!-- Contenido de acciones -->
                             <div class="p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    <a href="recepcionistas-agregar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-plus text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">agregar</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="recepcionistas-modificar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-edit text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">modificar</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="recepcionistas-acciones.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-eye text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">ver acciones</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -140,30 +140,30 @@ $config = get_page_config('admin_dashboard');
                             <!-- Contenido de acciones -->
                             <div class="p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    <a href="productos-agregar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-plus text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">agregar producto</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="productos-modificar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-edit text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">modificar producto</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="productos-stock.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-chart-bar text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">ajuste de stock</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="proveedores-agregar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-truck text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">agregar proveedor</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="proveedores-modificar.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-user-edit text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">modificar proveedor</span>
-                                    </button>
-                                    <button class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
+                                    </a>
+                                    <a href="productos-compras.php" class="flex items-center space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-all duration-200 text-left shadow-md hover:shadow-lg bg-white border border-gray-100">
                                         <i class="fas fa-shopping-cart text-vet-orange text-2xl"></i>
                                         <span class="font-light text-black">compras</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -196,6 +196,9 @@ $config = get_page_config('admin_dashboard');
                 </div>
             </div>
         </main>
+    </div>
+
+            </div>
     </div>
 
     <!-- Modal de validación de contraseña -->

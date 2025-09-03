@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Servicios</title>
+    <link rel="stylesheet" href="../../css/input.css">
     <link href="../../dist/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -13,61 +14,7 @@
     <script src="../../js/menu.js" defer></script>
     <script src="../../js/usuarios/servicios.js" defer></script>
     <style>
-        .flatpickr-calendar-responsive {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-            border: 1px solid #e5e7eb !important;
-            border-radius: 12px !important;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        }
         
-        .flatpickr-calendar-responsive .flatpickr-month {
-            background: #f8fafc !important;
-            border-radius: 12px 12px 0 0 !important;
-            border-bottom: 1px solid #e5e7eb !important;
-        }
-        
-        .flatpickr-calendar-responsive .flatpickr-day {
-            border-radius: 8px !important;
-            margin: 1px !important;
-        }
-        
-        .flatpickr-calendar-responsive .flatpickr-day:hover {
-            background: #f97316 !important;
-            color: white !important;
-        }
-        
-        .flatpickr-calendar-responsive .flatpickr-day.selected {
-            background: #f97316 !important;
-            border-color: #f97316 !important;
-        }
-        
-        .flatpickr-calendar-responsive .flatpickr-day.today {
-            border: 2px solid #f97316 !important;
-            font-weight: 600 !important;
-        }
-        
-        /* Responsive para móvil */
-        @media (max-width: 768px) {
-            .flatpickr-calendar-responsive {
-                width: 280px !important;
-                font-size: 14px !important;
-            }
-            
-            .flatpickr-calendar-responsive .flatpickr-day {
-                height: 32px !important;
-                line-height: 32px !important;
-                width: 32px !important;
-            }
-        }
-        
-        /* Posicionamiento mejorado en móvil */
-        @media (max-width: 480px) {
-            .flatpickr-calendar {
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                margin-top: 8px !important;
-            }
-        }
     </style>
 </head>
 

@@ -29,7 +29,7 @@ $page_configs = [
     'admin_dashboard' => [
         'header' => [
             'title' => 'INICIO',
-            'show_search' => true
+            'show_search' => false
         ],
         'sidebar' => [
             'current_page' => 'dashboard'
@@ -37,8 +37,8 @@ $page_configs = [
     ],
     'sucursales' => [
         'header' => [
-            'title' => 'GESTIÓN DE SUCURSALES',
-            'show_search' => true
+            'title' => 'SUCURSALES',
+            'show_search' => false
         ],
         'sidebar' => [
             'current_page' => 'sucursales'
@@ -46,8 +46,8 @@ $page_configs = [
     ],
     'veterinarios' => [
         'header' => [
-            'title' => 'GESTIÓN DE VETERINARIOS',
-            'show_search' => true
+            'title' => 'VETERINARIOS',
+            'show_search' => false
         ],
         'sidebar' => [
             'current_page' => 'veterinarios'
@@ -55,26 +55,17 @@ $page_configs = [
     ],
     'recepcionistas' => [
         'header' => [
-            'title' => 'GESTIÓN DE RECEPCIONISTAS',
-            'show_search' => true
+            'title' => 'RECEPCIONISTAS',
+            'show_search' => false
         ],
         'sidebar' => [
             'current_page' => 'recepcionistas'
         ]
     ],
-    'clientes' => [
-        'header' => [
-            'title' => 'GESTIÓN DE CLIENTES',
-            'show_search' => true
-        ],
-        'sidebar' => [
-            'current_page' => 'clientes'
-        ]
-    ],
     'productos' => [
         'header' => [
-            'title' => 'GESTIÓN DE PRODUCTOS',
-            'show_search' => true
+            'title' => 'PRODUCTOS',
+            'show_search' => false
         ],
         'sidebar' => [
             'current_page' => 'productos'
@@ -85,26 +76,27 @@ $page_configs = [
 // Definir submenús para cada sección
 $sidebar_submenus = [
     'sucursales' => [
-        ['text' => 'Agregar', 'href' => '#', 'icon' => 'fas fa-plus'],
-        ['text' => 'Modificar', 'href' => '#', 'icon' => 'fas fa-edit'],
-        ['text' => 'Servicios', 'href' => '#', 'icon' => 'fas fa-tools'],
-        ['text' => 'Administradores', 'href' => '#', 'icon' => 'fas fa-user-shield'],
-        ['text' => 'Caja Registradora', 'href' => '#', 'icon' => 'fas fa-cash-register'],
-        ['text' => 'Estadísticas', 'href' => '#', 'icon' => 'fas fa-chart-line']
+        ['text' => 'Agregar', 'href' => '../../pages/admin/sucursales-agregar.php', 'icon' => 'fas fa-plus'],
+        ['text' => 'Modificar', 'href' => '../../pages/admin/sucursales-modificar.php', 'icon' => 'fas fa-edit'],
+        ['text' => 'Servicios', 'href' => '../../pages/admin/sucursales-servicios.php', 'icon' => 'fas fa-tools'],
+        ['text' => 'Administradores', 'href' => '../../pages/admin/sucursales-administradores.php', 'icon' => 'fas fa-user-shield'],
+        ['text' => 'Caja Registradora', 'href' => '../../pages/admin/sucursales-caja.php', 'icon' => 'fas fa-cash-register'],
+        ['text' => 'Estadísticas', 'href' => '../../pages/admin/sucursales-estadisticas.php', 'icon' => 'fas fa-chart-line']
     ],
     'veterinarios' => [
-        ['text' => 'Agregar', 'href' => '#', 'icon' => 'fas fa-plus'],
-        ['text' => 'Modificar', 'href' => '#', 'icon' => 'fas fa-edit']
+        ['text' => 'Agregar', 'href' => '../../pages/admin/veterinarios-agregar.php', 'icon' => 'fas fa-plus'],
+        ['text' => 'Modificar', 'href' => '../../pages/admin/veterinarios-modificar.php', 'icon' => 'fas fa-edit']
     ],
     'recepcionistas' => [
-        ['text' => 'Agregar', 'href' => '#', 'icon' => 'fas fa-plus'],
-        ['text' => 'Modificar', 'href' => '#', 'icon' => 'fas fa-edit'],
-        ['text' => 'Ver Acciones', 'href' => '#', 'icon' => 'fas fa-eye']
+        ['text' => 'Agregar', 'href' => '../../pages/admin/recepcionistas-agregar.php', 'icon' => 'fas fa-plus'],
+        ['text' => 'Modificar', 'href' => '../../pages/admin/recepcionistas-modificar.php', 'icon' => 'fas fa-edit'],
+        ['text' => 'Ver Acciones', 'href' => '../../pages/admin/recepcionistas-acciones.php', 'icon' => 'fas fa-eye']
     ],
     'productos' => [
-        ['text' => 'Agregar Producto', 'href' => '#', 'icon' => 'fas fa-plus'],
-        ['text' => 'Modificar Producto', 'href' => '#', 'icon' => 'fas fa-edit'],
-        ['text' => 'Ajuste de Stock', 'href' => '#', 'icon' => 'fas fa-chart-bar'],
+        ['text' => 'Agregar Producto', 'href' => '../../pages/admin/productos-agregar.php', 'icon' => 'fas fa-plus'],
+        ['text' => 'Modificar Producto', 'href' => '../../pages/admin/productos-modificar.php', 'icon' => 'fas fa-edit'],
+        ['text' => 'Ajuste de Stock', 'href' => '../../pages/admin/productos-stock.php', 'icon' => 'fas fa-chart-bar'],
+        // Los siguientes archivos aún no existen, puedes crearlos después
         ['text' => 'Agregar Proveedor', 'href' => '#', 'icon' => 'fas fa-truck'],
         ['text' => 'Modificar Proveedor', 'href' => '#', 'icon' => 'fas fa-user-edit'],
         ['text' => 'Compras', 'href' => '#', 'icon' => 'fas fa-shopping-cart']

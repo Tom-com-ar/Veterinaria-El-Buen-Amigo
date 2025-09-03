@@ -57,6 +57,13 @@ if (function_exists('get_sidebar_submenus')) {
     
     <nav class="mt-4">
         <ul class="space-y-0">
+                <!-- Botón Volver al Inicio -->
+                <li>
+                    <a href="../../pages/admin/inicio-admin.php" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200 sidebar-item">
+                        <i class="fas fa-home text-xl mr-3"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
             <?php foreach ($sidebar_config['menu_items'] as $item): ?>
             <li>
                 <a href="<?php echo $item['has_submenu'] ? 'javascript:void(0)' : htmlspecialchars($item['href']); ?>" 
@@ -106,19 +113,15 @@ if (function_exists('get_sidebar_submenus')) {
             </button>
         </div>
         
-        <!-- Barra de búsqueda móvil -->
-        <div class="p-4 border-b border-vet-blue sticky top-20 bg-vet-dark z-40">
-            <div class="relative">
-                <input type="text" placeholder="Buscar herramientas" 
-                       class="w-full px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange">
-                <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <i class="fas fa-search text-gray-500 text-sm"></i>
-                </button>
-            </div>
-        </div>
-        
         <nav class="pb-6">
+            <!-- Botón Volver al Inicio móvil -->
             <ul class="space-y-0">
+                <li>
+                    <a href="../../pages/admin/inicio-admin.php" class="flex items-center px-6 py-3 text-white hover:bg-vet-blue transition-colors duration-200 sidebar-item">
+                        <i class="fas fa-home text-xl mr-3"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
                 <?php foreach ($sidebar_config['menu_items'] as $item): ?>
                 <li>
                     <a href="<?php echo $item['has_submenu'] ? 'javascript:void(0)' : htmlspecialchars($item['href']); ?>" 

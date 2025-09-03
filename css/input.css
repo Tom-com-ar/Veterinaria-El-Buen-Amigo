@@ -338,3 +338,59 @@ aside .bg-vet-darkblue {
     color: white;
     font-size: medium;
 }
+
+.flatpickr-calendar-responsive {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.flatpickr-calendar-responsive .flatpickr-month {
+    background: #f8fafc !important;
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.flatpickr-calendar-responsive .flatpickr-day {
+    border-radius: 8px !important;
+    margin: 1px !important;
+}
+
+.flatpickr-calendar-responsive .flatpickr-day:hover {
+    background: #f97316 !important;
+    color: white !important;
+}
+
+.flatpickr-calendar-responsive .flatpickr-day.selected {
+    background: #f97316 !important;
+    border-color: #f97316 !important;
+}
+
+.flatpickr-calendar-responsive .flatpickr-day.today {
+    border: 2px solid #f97316 !important;
+    font-weight: 600 !important;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .flatpickr-calendar-responsive {
+        width: 280px !important;
+        font-size: 14px !important;
+    }
+    
+    .flatpickr-calendar-responsive .flatpickr-day {
+        height: 32px !important;
+        line-height: 32px !important;
+        width: 32px !important;
+    }
+}
+
+/* Posicionamiento mejorado en móvil */
+@media (max-width: 480px) {
+    .flatpickr-calendar {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-top: 8px !important;
+    }
+}

@@ -20,19 +20,8 @@ $header_config = array_merge([
                 <h1 class="text-2xl font-bold text-white max-md:text-xl"><?php echo htmlspecialchars($header_config['title']); ?></h1>
             </div>
             
-            <!-- Lado derecho: Búsqueda y Usuario -->
+            <!-- Lado derecho: Usuario -->
             <div class="flex items-center space-x-4">
-                <?php if ($header_config['show_search']): ?>
-                <!-- Barra de búsqueda -->
-                <div class="relative max-md:hidden">
-                    <input type="text" placeholder="Buscar herramientas" 
-                           class="px-4 py-2 bg-white rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-vet-orange w-64">
-                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        <i class="fas fa-search text-gray-500 text-sm"></i>
-                    </button>
-                </div>
-                <?php endif; ?>
-                
                 <!-- Usuario -->
                 <div class="relative">
                     <button id="profile-menu-toggle" class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
