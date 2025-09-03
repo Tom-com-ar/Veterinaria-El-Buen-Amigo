@@ -93,7 +93,8 @@ button {
 .calendar {
     font-family: 'IBM Plex Sans', sans-serif;
     position: relative;
-    max-width: 400px; /*change as per your design need */
+    max-width: 400px;
+    /*change as per your design need */
     min-width: 320px;
     background: var(--calendar-bg-color);
     color: var(--calendar-font-color);
@@ -214,7 +215,7 @@ button {
 }
 
 .calendar .calendar-inner .calendar-controls .calendar-next a svg path,
-.calendar .calendar-inner .calendar-controls .calendar-prev a svg path{
+.calendar .calendar-inner .calendar-controls .calendar-prev a svg path {
     fill: var(--next-prev-arrow-color);
 }
 
@@ -225,8 +226,8 @@ button {
 
 .calendar .calendar-inner .calendar-body .prev-dates:hover,
 .calendar .calendar-inner .calendar-body .next-dates:hover {
-  border: 1px solid transparent;
-  pointer-events: none;
+    border: 1px solid transparent;
+    pointer-events: none;
 }
 
 /* Estilos personalizados para submenús del sidebar */
@@ -330,4 +331,10 @@ aside .bg-vet-darkblue {
 
 .fixed.inset-0.bg-black {
     background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/*Correcion de color*/
+.texto-blanco {
+    color: white;
+    font-size: medium;
 }

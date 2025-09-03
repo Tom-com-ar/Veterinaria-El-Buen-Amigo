@@ -33,9 +33,9 @@
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Turnos</a>
                         <a href="productos.html"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Productos</a>
-                        <a href="#valoranos"
+                        <a href="home.html#valoranos"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Valoranos</a>
-                        <a href="#app"
+                        <a href="home.html#app"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">App</a>
                     </div>
                 </div>
@@ -56,13 +56,15 @@
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Turnos</a>
                     <a href="productos.html"
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
-                    <a href="#valoranos"
+                    <a href="home.html#valoranos"
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Valoranos</a>
+                    <a href="home.html#app"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">App</a>
                     <hr class="my-2">
                     <div class="flex items-center justify-center">
                         <a href="perfil.html" class="bg-black rounded-full px-4 py-2 flex items-center gap-2">
                             <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
-                            <span class="text-white font-medium">Tomás Iezzi</span>
+                            <span class="texto-blanco">Tomás Iezzi</span>
                         </a>
                     </div>
                 </div>
@@ -71,18 +73,9 @@
             <div class="flex items-center space-x-4 max-md:hidden">
                 <a href="perfil.html" class="bg-black rounded-full px-4 py-2 flex items-center gap-2 hover:bg-gray-800 transition-colors duration-300">
                     <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
-                    <span class="text-white font-medium">Tomás Iezzi</span>
+                    <span class="texto-blanco">Tomás Iezzi</span>
                 </a>
             </div>
-
-            <!-- User Info Logeado 
-            <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2 max-sm:hidden">
-                <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
-                <h1 class="text-white font-medium max-lg:hidden">Tomás Iezzi</h1>
-                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-            </div>-->
         </div>
     </nav>
 
@@ -138,7 +131,7 @@
                     <h4 class="font-semibold text-lg mb-1 text-vet-dark text-center">${p.nombre}</h4>
                     <span class="text-vet-orange font-bold text-xl mb-2 text-center">$${p.precio}</span>
                     <p class="text-vet-dark text-sm mb-4 text-center">${p.descripcion}</p>
-                    <a href="../pages/productos/info.html?id=${p.id}" class="bg-vet-orange text-white py-2 rounded-xl font-medium hover:bg-vet-light transition mb-2 w-full text-center justify-center">
+                    <a href="../productos/info.html?id=${p.id}" class="bg-vet-orange text-white py-2 rounded-xl font-medium hover:bg-vet-light transition mb-2 w-full text-center justify-center">
                         Ver más
                     </a>
                 </div>

@@ -24,82 +24,56 @@
             <div class="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <div class="bg-vet-dark/90 backdrop-blur-md rounded-2xl px-6 py-2 shadow-xl border border-white/20">
                     <div class="flex items-center space-x-8">
-                        <a href="../index.html"
+                        <a href="../usuario/home.html"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Inicio</a>
-                        <a href="..#servicios"
-                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Servicios</a>
-                        <a href="#productos"
+                        <a href="../usuario/servicios.html"
+                            class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Turnos</a>
+                        <a href="../usuario/productos.html"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Productos</a>
-                        <a href="../index.html#valoranos"
+                        <a href="../usuario/home.html#valoranos"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">Valoranos</a>
-                        <a href="../index.html#app"
+                        <a href="../usuario/home.html#app"
                             class="text-white hover:text-black transition-colors duration-300 text-sm font-medium">App</a>
-
                     </div>
                 </div>
             </div>
 
             <!-- Botón de menú hamburguesa para móvil -->
             <div class="relative md:hidden">
-                <button id="menu-toggle" class="text-white p-2">
-                    <img src="../../assets/burguer.svg" alt="Menu" class="w-6 h-6">
+                <button id="menu-toggle" class="text-white p-2 hover:text-vet-orange transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
 
                 <!-- Menú móvil desplegable -->
                 <div id="mobile-menu"
-                    class="max-md:hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
-                    <a href="../../index.html"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-vet-cream rounded-2xl shadow-lg py-2 z-50">
+                    <a href="../usuario/home.html"
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Inicio</a>
-                    <a href="../../pages/servicios.html"
-                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Servicios</a>
-                    <a href="../../pages/productos.html"
+                    <a href="../usuario/servicios.html"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Turnos</a>
+                    <a href="../usuario/productos.html"
                         class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Productos</a>
-                    <a href="#valoranos"
-                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Contacto</a>
+                    <a href="../usuario/home.html#valoranos"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">Valoranos</a>
+                    <a href="../usuario/home.html#app"
+                        class="block px-4 py-2 text-black hover:text-vet-orange/90 transition-colors duration-300 font-medium">App</a>
                     <hr class="my-2">
-                    <div class="flex items-center justify-evenly space-x-4">
-                        <a href="../../pages/login.html"
-                            class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
-                            Login
-                        </a>
-                        <a href="../../pages/registro.html"
-                            class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
-                            Registro
+                    <div class="flex items-center justify-center">
+                        <a href="../usuario/perfil.html" class="bg-black rounded-full px-4 py-2 flex items-center gap-2">
+                            <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
+                            <span class="texto-blanco">Tomás Iezzi</span>
                         </a>
                     </div>
-                    <!-- User Info Logeado 
-                    <div class="flex items-center justify-evenly space-x-4">
-                        <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2">
-                            <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-7 h-7 rounded-full">
-                            <h1 class="text-white font-medium">Tomás Iezzi</h1>
-                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4v16m8-8H4" />
-                            </svg>
-                        </div>
-                    </div>-->
                 </div>
             </div>
 
             <div class="flex items-center space-x-4 max-md:hidden">
-                <a href="../pages/login.html"
-                    class="text-white hover:text-vet-light transition-colors duration-300 text-sm font-medium drop-shadow-lg">
-                    Login
-                </a>
-                <a href="../pages/registro.html"
-                    class="bg-vet-orange text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-vet-orange/90 transition-colors duration-300 shadow-lg">
-                    Registro
+                <a href="../usuario/perfil.html"
+                    class="bg-black rounded-full px-4 py-2 flex items-center gap-2 hover:bg-gray-800 transition-colors duration-300">
+                    <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
+                    <span class="texto-blanco">Tomás Iezzi</span>
                 </a>
             </div>
-
-            <!-- User Info Logeado 
-            <div class="bg-black rounded-full px-4 py-2 flex items-center gap-2 max-sm:hidden">
-                <img src="../../assets/Ellipse 10.png" alt="User Icon" class="w-6 h-6 rounded-full">
-                <h1 class="text-white font-medium max-lg:hidden">Tomás Iezzi</h1>
-                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-            </div> -->
         </div>
     </nav>
 
@@ -136,7 +110,7 @@
                     </p>
 
                     <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-                        <a href="../pages/productos.html" title=""
+                        <a href="../usuario/productos.html" title=""
                             class="text-black mt-4 sm:mt-0 bg-vet-orange hover:bg-vet-dark font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center"
                             role="button">
                             Volver al Catálogo
