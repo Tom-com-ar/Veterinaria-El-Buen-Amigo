@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMobileMenu = document.getElementById('close-mobile-menu');
 
     function openMobileMenu() {
-        mobileMenuOverlay.classList.remove('hidden');
+        mobileMenuOverlay.classList.remove('hidden'); 
         setTimeout(() => {
             mobileSidebar.classList.remove('-translate-x-full');
         }, 10);
