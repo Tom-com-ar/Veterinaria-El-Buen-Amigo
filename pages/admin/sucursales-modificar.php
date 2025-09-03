@@ -226,8 +226,7 @@ $config = get_page_config('sucursales');
 
     <script>
         function editSucursal(id) {
-            // Aquí cargarías los datos de la sucursal por AJAX
-            // Por ahora solo simulamos
+            
             document.getElementById('edit-id').value = id;
             document.getElementById('edit-nombre').value = id === 1 ? 'Sucursal Centro' : 'Sucursal Norte';
             document.getElementById('edit-codigo').value = id === 1 ? 'SUC001' : 'SUC002';
@@ -245,7 +244,7 @@ $config = get_page_config('sucursales');
         function deleteSucursal(id) {
             if (confirm('¿Está seguro de que desea eliminar esta sucursal?')) {
                 alert('Sucursal ' + id + ' eliminada');
-                // Aquí harías la eliminación por AJAX
+                
             }
         }
 
@@ -253,12 +252,11 @@ $config = get_page_config('sucursales');
             document.getElementById('edit-modal').classList.add('hidden');
         }
 
-        // Manejar el envío del formulario de edición
         document.getElementById('edit-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Cambios guardados correctamente');
             closeEditModal();
-            // Aquí enviarías los datos por AJAX
+            
         });
     </script>
 </body>

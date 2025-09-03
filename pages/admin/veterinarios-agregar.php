@@ -183,7 +183,7 @@ $config = get_page_config('veterinarios');
                                 </div>
                             </div>
 
-                            <!-- Botones - Fuera del grid pero visibles -->
+                            <!-- Botones -->
                             <div class="flex space-x-4 pt-8 mt-8 border-t border-gray-200" style="margin-top: 2rem !important;">
                                 <button type="button" onclick="limpiarFormulario()"
                                         class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors" style="display: inline-block !important;">
