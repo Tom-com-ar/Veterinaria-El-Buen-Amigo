@@ -173,6 +173,29 @@ CREATE TABLE historial_clinico (
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id)
 );
 
+-- =====================
+-- TABLA DE VACUNAS 
+-- =====================
+
+CREATE TABLE vacunas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    laboratorio VARCHAR(100) NOT NULL,
+    especies VARCHAR(200) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock_actual INT DEFAULT 0,
+    stock_minimo INT DEFAULT 5,
+    fecha_vencimiento DATE,
+    lote VARCHAR(50),
+    id_sucursal INT NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id)
+);
+
 CREATE TABLE historial_vacunacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_mascota INT NOT NULL,
@@ -230,7 +253,7 @@ CREATE TABLE emergencias (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id) ON DELETE SET NULL,
-    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id),
+    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id)
 );
 
 CREATE TABLE internaciones (
@@ -304,26 +327,36 @@ CREATE TABLE productos (
 );
 
 -- =====================
--- TABLA DE VACUNAS 
+-- SISTEMA DE COMPRAS DE VACUNAS (Administrador al Proveedor)
 -- =====================
 
-CREATE TABLE vacunas (
+CREATE TABLE compras_vacunas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(50) UNIQUE NOT NULL,
-    nombre VARCHAR(150) NOT NULL,
-    descripcion TEXT,
-    laboratorio VARCHAR(100) NOT NULL,
-    especies VARCHAR(200) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    stock_actual INT DEFAULT 0,
-    stock_minimo INT DEFAULT 5,
-    fecha_vencimiento DATE,
-    lote VARCHAR(50),
+    numero_compra VARCHAR(50) UNIQUE NOT NULL,
+    id_proveedor INT NOT NULL,
     id_sucursal INT NOT NULL,
-    activo BOOLEAN DEFAULT TRUE,
+    id_administrador INT NOT NULL,
+    fecha_compra DATE NOT NULL,
+    total DECIMAL(12,2) DEFAULT 0,
+    estado ENUM('pendiente','recibida','cancelada') DEFAULT 'pendiente',
+    observaciones TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id)
+    FOREIGN KEY (id_proveedor) REFERENCES proveedores(id),
+    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id),
+    FOREIGN KEY (id_administrador) REFERENCES administradores(id)
+);
+
+CREATE TABLE detalle_compra_vacunas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_compra INT NOT NULL,
+    id_vacuna INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(12,2) NOT NULL,
+    lote VARCHAR(50) NOT NULL,
+    fecha_vencimiento DATE NOT NULL,
+    FOREIGN KEY (id_compra) REFERENCES compras_vacunas(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_vacuna) REFERENCES vacunas(id)
 );
 
 -- =====================
@@ -401,9 +434,8 @@ CREATE TABLE cajas (
 CREATE TABLE movimientos_caja (
     id_movimiento INT AUTO_INCREMENT PRIMARY KEY,
     id_caja INT NOT NULL,
-    id_sucursal INT NOT NULL,
-    id_administrador INT NOT NULL,
     tipo_movimiento ENUM('ingreso_venta','egreso_compra','deposito','retiro','ajuste') NOT NULL,
+    email_usuario VARCHAR(150) NOT NULL,
     monto DECIMAL(10,2) NOT NULL,
     saldo_anterior DECIMAL(10,2) NOT NULL,
     saldo_nuevo DECIMAL(10,2) NOT NULL,
@@ -411,9 +443,7 @@ CREATE TABLE movimientos_caja (
     referencia_tabla VARCHAR(50) DEFAULT NULL COMMENT 'ventas, compras, etc.',
     referencia_id INT DEFAULT NULL COMMENT 'ID de la tabla referenciada',
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_caja) REFERENCES cajas(id),
-    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id),
-    FOREIGN KEY (id_administrador) REFERENCES administradores(id)
+    FOREIGN KEY (id_caja) REFERENCES cajas(id)
 );
 
 -- =====================
