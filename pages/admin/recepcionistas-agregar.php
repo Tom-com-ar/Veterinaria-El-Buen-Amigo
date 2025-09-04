@@ -89,16 +89,6 @@ $config = get_page_config('recepcionistas');
                                         <option value="3">Sucursal Sur</option>
                                     </select>
                                 </div>
-
-                                <!-- Estado activo -->
-                                <div class="space-y-4">
-                                    <label class="block text-sm font-medium text-gray-700">Estado:</label>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="activo" name="activo" value="1" checked
-                                               class="rounded border-gray-300 text-vet-orange focus:ring-vet-orange">
-                                        <label for="activo" class="ml-2 text-sm text-gray-700">Recepcionista activa</label>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- Botones - Fuera del grid pero visibles -->

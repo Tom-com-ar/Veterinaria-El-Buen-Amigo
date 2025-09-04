@@ -117,16 +117,6 @@ $config = get_page_config('veterinarios');
                                     </select>
                                 </div>
 
-                                <!-- Estado activo -->
-                                <div class="space-y-4">
-                                    <label class="block text-sm font-medium text-gray-700">Estado:</label>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="activo" name="activo" value="1" checked
-                                               class="rounded border-gray-300 text-vet-orange focus:ring-vet-orange">
-                                        <label for="activo" class="ml-2 text-sm text-gray-700">Veterinario activo</label>
-                                    </div>
-                                </div>
-
                                 <!-- Servicios que puede realizar - Span completo -->
                                 <div class="md:col-span-2 space-y-4 mt-4">
                                     <label class="block text-sm font-medium text-gray-700">Servicios que puede realizar:</label>

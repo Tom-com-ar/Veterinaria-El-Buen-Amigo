@@ -80,13 +80,6 @@ $config = get_page_config('productos');
                                     </select>
                                 </div>
 
-                                <!-- Stock actual -->
-                                <div class="space-y-4">
-                                    <label for="stock_actual" class="block text-sm font-medium text-gray-700">Stock actual:</label>
-                                    <input type="number" id="stock_actual" name="stock_actual" min="0" value="0" placeholder="Ej: 100"
-                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-orange focus:border-transparent">
-                                </div>
-
                                 <!-- Stock mínimo -->
                                 <div class="space-y-4">
                                     <label for="stock_minimo" class="block text-sm font-medium text-gray-700">Stock mínimo:</label>
@@ -130,30 +123,6 @@ $config = get_page_config('productos');
                                         <option value="2">Sucursal Norte</option>
                                         <option value="3">Sucursal Sur</option>
                                     </select>
-                                </div>
-
-                                <!-- Fecha de vencimiento (para productos como vacunas) -->
-                                <div class="space-y-4">
-                                    <label for="fecha_vencimiento" class="block text-sm font-medium text-gray-700">Fecha de vencimiento:</label>
-                                    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento"
-                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-orange focus:border-transparent">
-                                </div>
-
-                                <!-- Lote -->
-                                <div class="space-y-4">
-                                    <label for="lote" class="block text-sm font-medium text-gray-700">Número de lote:</label>
-                                    <input type="text" id="lote" name="lote" placeholder="Ej: L2024001"
-                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-vet-orange focus:border-transparent">
-                                </div>
-
-                                <!-- Estado activo -->
-                                <div class="space-y-4">
-                                    <label class="block text-sm font-medium text-gray-700">Estado:</label>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="activo" name="activo" value="1" checked
-                                               class="rounded border-gray-300 text-vet-orange focus:ring-vet-orange">
-                                        <label for="activo" class="ml-2 text-sm text-gray-700">Producto activo</label>
-                                    </div>
                                 </div>
                             </div>
 
