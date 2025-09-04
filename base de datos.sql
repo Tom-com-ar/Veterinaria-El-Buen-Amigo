@@ -56,10 +56,11 @@ CREATE TABLE clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
+    DNI VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(150) NOT NULL UNIQUE,
-    hash_pass VARCHAR(255),
+    hash_pass VARCHAR(255) NOT NULL,
     telefono VARCHAR(50) NOT NULL,
-    direccion VARCHAR(255),
+    direccion VARCHAR(255) NOT NULL,
     url_foto VARCHAR(255),
     activo BOOLEAN DEFAULT TRUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -70,9 +71,10 @@ CREATE TABLE veterinarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
+    DNI VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(150) UNIQUE NOT NULL,
     hash_pass VARCHAR(255) NOT NULL,
-    telefono VARCHAR(50),
+    telefono VARCHAR(50) NOT NULL,
     salario DECIMAL(10,2) NOT NULL,
     url_foto VARCHAR(255),
     id_sucursal INT NOT NULL,
@@ -100,10 +102,10 @@ CREATE TABLE mascotas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     especie VARCHAR(50) NOT NULL,
-    raza VARCHAR(100),
-    fecha_nacimiento DATE,
-    sexo ENUM('macho','hembra'),
-    peso DECIMAL(5,2),
+    raza VARCHAR(100) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    sexo ENUM('macho','hembra') NOT NULL,
+    peso DECIMAL(5,2) NOT NULL,
     id_cliente INT NOT NULL,
     url_foto VARCHAR(255),
     activo BOOLEAN DEFAULT TRUE,
@@ -115,8 +117,8 @@ CREATE TABLE mascotas (
 CREATE TABLE servicios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    duracion_min INT NOT NULL DEFAULT 30,
+    descripcion TEXT NOT NULL,
+    duracion_min INT NOT NULL DEFAULT 10,
     precio DECIMAL(10,2) NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -144,21 +146,17 @@ CREATE TABLE veterinario_servicio (
 
 CREATE TABLE turnos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_mascota INT,
-    id_veterinario INT,
-    id_servicio INT,
-    id_sucursal INT,
-    fecha_hora DATETIME,
-    estado ENUM('pendiente','cancelado','atendido'),
-    creado_por ENUM('cliente','recepcionista'),
-    precio_cobrado DECIMAL(10,2), -- Precio final cobrado
+    id_mascota INT NOT NULL,
+    id_veterinario INT NOT NULL,
+    fecha_hora DATETIME NOT NULL,
+    estado ENUM('pendiente','cancelado','atendido') NOT NULL,
+    creado_por ENUM('cliente','recepcionista') NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
     tipo_de_pago ENUM('efectivo','tarjeta','transferencia') NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id),
     FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id),
-    FOREIGN KEY (id_servicio) REFERENCES servicios(id),
-    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id),
     UNIQUE KEY unique_turno (id_veterinario, fecha_hora)
 );
 
@@ -168,28 +166,24 @@ CREATE TABLE turnos (
 
 CREATE TABLE historial_clinico (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_mascota INT,
-    fecha DATE,
-    observaciones TEXT,
+    id_mascota INT NOT NULL,
+    fecha DATE NOT NULL,
+    observaciones TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id)
 );
 
 CREATE TABLE historial_vacunacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_mascota INT,
-    id_producto INT, -- Referencia a la vacuna en productos
-    id_veterinario INT, -- Veterinario que aplicó la vacuna
-    id_sucursal INT, -- Sucursal donde se aplicó
-    vacuna VARCHAR(100), -- Nombre de la vacuna
-    fecha_aplicada DATE,
+    id_mascota INT NOT NULL,
+    id_vacuna INT NOT NULL,
+    fecha_aplicada DATE NOT NULL,
     proxima_dosis DATE,
+    lote_aplicado VARCHAR(50),
     observaciones TEXT,
-    created_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id),
-    FOREIGN KEY (id_producto) REFERENCES productos(id),
-    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id),
-    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id)
+    FOREIGN KEY (id_vacuna) REFERENCES vacunas(id)
 );
 
 CREATE TABLE emergencias (
@@ -231,13 +225,27 @@ CREATE TABLE emergencias (
     
     -- Información de costos
     costo_atencion DECIMAL(10,2) DEFAULT 0,
-    pagado BOOLEAN DEFAULT FALSE,
     
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
     FOREIGN KEY (id_mascota) REFERENCES mascotas(id) ON DELETE SET NULL,
     FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id),
+);
+
+CREATE TABLE internaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_mascota INT NOT NULL,
+    id_veterinario INT NOT NULL, -- Veterinario responsable
+    fecha_ingreso DATETIME NOT NULL,
+    fecha_alta DATETIME NULL, -- NULL = aún internado
+    motivo TEXT NOT NULL, -- Razón de la internación
+    estado ENUM('internado','alta') DEFAULT 'internado',
+    observaciones TEXT,
+    costo_total DECIMAL(10,2) DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_mascota) REFERENCES mascotas(id),
+    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id)
 );
 
 CREATE TABLE feedback (
@@ -252,6 +260,14 @@ CREATE TABLE feedback (
     FOREIGN KEY (id_cliente) REFERENCES clientes(id)
 );
 
+CREATE TABLE comentarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    comentario TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE
+);
+
 -- =====================
 -- TABLAS DE INVENTARIO Y PROVEEDORES
 -- =====================
@@ -259,11 +275,10 @@ CREATE TABLE feedback (
 CREATE TABLE proveedores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
-    contacto VARCHAR(100),
-    telefono VARCHAR(50),
-    email VARCHAR(150),
-    direccion VARCHAR(255),
-    cuit_rut VARCHAR(20),
+    contacto VARCHAR(100) NOT NULL,
+    telefono VARCHAR(50) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -274,20 +289,40 @@ CREATE TABLE productos (
     codigo_barras VARCHAR(50) UNIQUE,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
-    rubro ENUM('comida','juguetes','muebles','remedios','accesorios','higiene','vacunas') NOT NULL,
+    rubro ENUM('comida','juguetes','muebles','remedios','accesorios','higiene') NOT NULL,
     stock_actual INT DEFAULT 0,
     stock_minimo INT DEFAULT 0,
     precio_costo DECIMAL(10,2) DEFAULT 0,
     precio_venta DECIMAL(10,2) NOT NULL,
     id_proveedor_principal INT,
-    id_sucursal INT NOT NULL, -- Sucursal donde está el producto
-    -- Campos adicionales para productos especiales (vacunas)
-    fecha_vencimiento DATE NULL,
-    lote VARCHAR(50) NULL,
+    id_sucursal INT NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_proveedor_principal) REFERENCES proveedores(id),
+    FOREIGN KEY (id_sucursal) REFERENCES sucursales(id)
+);
+
+-- =====================
+-- TABLA DE VACUNAS 
+-- =====================
+
+CREATE TABLE vacunas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    laboratorio VARCHAR(100) NOT NULL,
+    especies VARCHAR(200) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock_actual INT DEFAULT 0,
+    stock_minimo INT DEFAULT 5,
+    fecha_vencimiento DATE,
+    lote VARCHAR(50),
+    id_sucursal INT NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_sucursal) REFERENCES sucursales(id)
 );
 
@@ -390,18 +425,3 @@ ALTER TABLE mascotas ADD COLUMN internado BOOLEAN DEFAULT FALSE;
 ALTER TABLE mascotas ADD COLUMN fecha_internacion DATETIME NULL;
 ALTER TABLE mascotas ADD COLUMN motivo_internacion TEXT NULL;
 
--- Tabla simple de internaciones (solo lo esencial)
-CREATE TABLE internaciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_mascota INT NOT NULL,
-    id_veterinario INT NOT NULL, -- Veterinario responsable
-    fecha_ingreso DATETIME NOT NULL,
-    fecha_alta DATETIME NULL, -- NULL = aún internado
-    motivo TEXT NOT NULL, -- Razón de la internación
-    estado ENUM('internado','alta') DEFAULT 'internado',
-    observaciones TEXT,
-    costo_total DECIMAL(10,2) DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_mascota) REFERENCES mascotas(id),
-    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id)
-);
